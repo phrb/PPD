@@ -3,6 +3,6 @@
 
 * Ciência Reprodutível para Experimentos Computacionais
 ** Conteúdo
-- [[https://github.com/phrb/PPD/raw/slides/lectures/org/reprodutibilidade/org/presentation.pdf][Slides]]
+- [[https://github.com/phrb/PPD/raw/main/lectures/org/reprodutibilidade/org/presentation.pdf][Slides]]
 - [[file:exercicio.html][Exercício Prático]]
 - [[file:recursos.html][Recursos]]
