@@ -1,0 +1,36 @@
+#+STARTUP: overview indent inlineimages logdrawer
+#+OPTIONS: toc:nil TeX:t LaTeX:t
+
+* Exercício Prático: Estatística e Documentos Computacionais
+** Dependências
+- Distribuição Linux
+  - Alternativamente, outros sistemas que suportem Docker
+- Bash, ou outro emulador de terminal
+- [[https://git-scm.com/downloads][Git]]
+- [[https://docs.docker.com/get-docker/][Docker]]
+
+** Inicialização do Exercício
+- Clone o repositório do curso:
+#+begin_export markdown
+``` bash
+git clone https://github.com/phrb/PPD.git
+```
+#+end_export
+- Construa a imagem do *Docker*:
+#+begin_export markdown
+``` bash
+cd lectures/org/reprodutibilidade/exercicio_pratico && ./build.sh -b
+```
+#+end_export
+- Inicie o servidor *Jupyter*:
+#+begin_export markdown
+``` bash
+./build.sh -r
+```
+#+end_export
+- Pelo seu /browser/, acesse o servidor *Jupyter* usando o /token/ gerado:
+[[file:assets/docker_run.png]]
+- Na pasta /work/, abra o notebook do exercício:
+[[file:assets/load_notebook.png]]
+- Todos  os pacotes  /R/ e  /datasets/ já  estão instalados  no /notebook/,  e o
+  exercício continua lá

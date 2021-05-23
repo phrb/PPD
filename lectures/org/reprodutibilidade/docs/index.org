@@ -1,0 +1,8 @@
+#+STARTUP: overview indent inlineimages
+#+OPTIONS: toc:nil TeX:t LaTeX:t
+
+* Ciência Reprodutível para Experimentos Computacionais
+** Conteúdo
+- [[https://github.com/phrb/PPD/raw/slides/lectures/org/reprodutibilidade/org/presentation.pdf][Slides]]
+- [[file:exercicio.html][Exercício Prático]]
+- [[file:recursos.html][Recursos]]

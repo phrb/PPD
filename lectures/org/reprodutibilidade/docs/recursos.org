@@ -1,0 +1,28 @@
+#+STARTUP: overview indent inlineimages logdrawer
+#+OPTIONS: toc:nil TeX:t LaTeX:t
+
+* Recursos
+** Ciência e Ciência Reprodutível
+
+*** Palestras
+- [[https://www.youtube.com/watch?v=Kee4ch3miVA][Reproducible, Reusable, and Robust Reinforcement Learning]] (Joelle Pineau, NeurIPS, 2018)
+- [[https://www.youtube.com/watch?v=v778svukrtU][The Reproducibility Crisis]] (Sabine Hossenfelder entrevista Dorothy Bishop, 2020)
+  - [[https://www.nature.com/articles/d41586-019-01307-2][Rein in the four horsemen of irreproducibility]] (Dorothy Bishop, Nature, 2019)
+- [[https://webinars.on24.com/acm/fursin][Reproducing 150 Research Papers and Testing Them in the Real World: Challenges and Solutions]] (Grigori Fursin, ACM Tech Talks, 2021)
+*** Livros
+- [[https://www.statisticsdonewrong.com/][Statistics Done Wrong]] (Alex Reinhart, 2015)
+- [[https://us.macmillan.com/books/9781250222695][Science Fictions]] (Stuart Ritchie, 2020)
+- [[https://store.doverpublications.com/0486422631.html][Great Scientific Experiments: Twenty Experiments that Changed our View of the World]] (Rom Harré, 2011)
+- [[https://www.callingbullshit.org/][Calling Bullshit]] (Bergstrom and West, 2020)
+
+** Estatística
+
+- [[https://www.wiley.com/en-us/Design+and+Analysis+of+Experiments%252C+10th+Edition-p-9781119492443][Design and Analysis of Experiments]] (Douglas Montgomery, 2019)
+- [[https://www.wiley.com/en-us/Statistics+for+Experimenters%253A+Design%252C+Innovation%252C+and+Discovery%252C+2nd+Edition-p-9780471718130][Statistics for Experimenters]] (Box, Hunter, and Hunter, 2005)
+- [[https://xcelab.net/rm/statistical-rethinking/][Statistical Rethinking]] (Richard McElreath, 2020)
+- [[https://www.cs.wustl.edu/~jain/books/perfbook.htm][The Art of Computer Systems Performance Analysis]] (R. Jain, 1991)
+- [[https://www.goodreads.com/book/show/43722897-the-art-of-statistics][The Art of Statistics]] (David Spiegelhalter, 2019)
+- [[https://link.springer.com/book/10.1007/978-0-387-21736-9][All of Statistics]] (Larry Wasserman, 2004)
+- [[https://link.springer.com/book/10.1007/978-1-4614-7138-7][An Introduction to Statistical Learning]] (James, Witten, Hastie, Tibshirani, 2013)
+  - More in depth: [[https://link.springer.com/book/10.1007/978-0-387-84858-7][The Elements of Statistical Learning]] (Hastie, Tibshirani, Friedman, 2009)
+- [[http://users.isr.ist.utl.pt/~wurmd/Livros/school/Bishop%2520-%2520Pattern%2520Recognition%2520And%2520Machine%2520Learning%2520-%2520Springer%2520%25202006.pdf][Pattern Recognition and Machine Learning]] (Christopher M. Bishop, 2006)

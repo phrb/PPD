@@ -1,0 +1,17 @@
+#+STARTUP: overview indent inlineimages
+#+OPTIONS: toc:nil
+
+* Programação Paralela e Distribuída
+[[http://creativecommons.org/licenses/by/4.0/][https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg]]
+
+Este  repositório  contém  aulas  e  exemplos de  código  sobre  ferramentas  de
+programação paralela e distribuída, e tópicos semelhantes
+
+** Conteúdo
+- [[https://phrb.github.io/PPD/lectures/tex/pthreads_omp/index.html][Pthreads e OpenMP]]
+- MPI
+- CUDA
+- LLVM
+- Aceleradores de Hardware
+- História da Computação
+- [[file:lectures/org/reprodutibilidade/docs/index.html][Ciência Reprodutível para Experimentos Computacionais]]

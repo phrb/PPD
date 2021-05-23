@@ -1,0 +1,653 @@
+#+STARTUP: beamer overview indent inlineimages logdrawer
+#+TITLE: Ciência Reprodutível para Experimentos Computacionais
+#+AUTHOR:    \footnotesize Pedro Bruel
+#+DATE:      \scriptsize \emph{pedro.bruel@gmail.com}
+#+DESCRIPTION:
+#+KEYWORDS:
+#+LANGUAGE:  bt-br
+#+OPTIONS:   H:2 num:t toc:nil @:t \n:nil ::t |:t ^:t -:t f:t *:t <:t
+#+OPTIONS:   tex:t latex:t skip:nil d:nil todo:t pri:nil tags:not-in-toc
+#+TAGS: noexport(n)
+
+* LaTeX Setup                                      :B_ignoreheading:noexport:
+:PROPERTIES:
+:BEAMER_env: ignoreheading
+:END:
+
+See [[Emacs Setup]] below for local buffer variables
+
+** LaTeX Configuration
+:latex_header:
+#+LATEX_CLASS: beamer
+#+LATEX_CLASS_OPTIONS: [10pt, compress, aspectratio=169, xcolor={table,usenames,dvipsnames}]
+#+LATEX_HEADER: \mode<beamer>{\usetheme[numbering=fraction, progressbar=none, titleformat frame=regular, titleformat title=regular, sectionpage=progressbar]{metropolis}}
+
+#+COLUMNS: %40ITEM %10BEAMER_env(Env) %9BEAMER_envargs(Env Args) %4BEAMER_col(Col) %10BEAMER_extra(Extra)
+
+#+LATEX_HEADER: \usepackage{sourcecodepro}
+#+LATEX_HEADER: \usepackage{booktabs}
+#+LATEX_HEADER: \usepackage{array}
+#+LATEX_HEADER: \usepackage{listings}
+#+LATEX_HEADER: \usepackage{multirow}
+#+LATEX_HEADER: \usepackage{caption}
+#+LATEX_HEADER: \usepackage{graphicx}
+#+LATEX_HEADER: \usepackage[english]{babel}
+#+LATEX_HEADER: \usepackage[scale=2]{ccicons}
+#+LATEX_HEADER: \usepackage{hyperref}
+#+LATEX_HEADER: \usepackage{relsize}
+#+LATEX_HEADER: \usepackage{amsmath}
+#+LATEX_HEADER: \usepackage{bm}
+#+LATEX_HEADER: \usepackage{ragged2e}
+#+LATEX_HEADER: \usepackage{textcomp}
+#+LATEX_HEADER: \usepackage{pgfplots}
+#+LATEX_HEADER: \usepgfplotslibrary{dateplot}
+
+#+LATEX_HEADER: \definecolor{Base}{HTML}{191F26}
+#+LATEX_HEADER: \definecolor{Accent}{HTML}{b10000}
+#+LATEX_HEADER: \colorlet{Highlight}{Accent!18}
+
+#+LATEX_HEADER: \setbeamercolor{alerted text}{fg=Accent}
+#+LATEX_HEADER: \setbeamercolor{frametitle}{fg=Accent,bg=normal text.bg}
+#+LATEX_HEADER: \setbeamercolor{normal text}{bg=black!2,fg=Base}
+
+#+LATEX_HEADER: \usepackage{newpxtext}
+#+LATEX_HEADER: \usepackage{newpxmath}
+#+LATEX_HEADER: \usepackage{DejaVuSansMono}
+#+LATEX_HEADER: \setmonofont{DejaVuSansMono}
+
+#+LATEX_HEADER: \lstset{ %
+#+LATEX_HEADER:   backgroundcolor={},
+#+LATEX_HEADER:   basicstyle=\ttfamily\scriptsize,
+#+LATEX_HEADER:   breakatwhitespace=true,
+#+LATEX_HEADER:   breaklines=true,
+#+LATEX_HEADER:   captionpos=n,
+#+LATEX_HEADER:   commentstyle=\color{Accent},
+# #+LATEX_HEADER:   escapeinside={\%*}{*)},
+#+LATEX_HEADER:   extendedchars=true,
+#+LATEX_HEADER:   frame=n,
+#+LATEX_HEADER:   keywordstyle=\color{Accent},
+#+LATEX_HEADER:   rulecolor=\color{black},
+#+LATEX_HEADER:   showspaces=false,
+#+LATEX_HEADER:   showstringspaces=false,
+#+LATEX_HEADER:   showtabs=false,
+#+LATEX_HEADER:   stepnumber=2,
+#+LATEX_HEADER:   stringstyle=\color{gray},
+#+LATEX_HEADER:   tabsize=2,
+#+LATEX_HEADER: }
+#+LATEX_HEADER: \renewcommand*{\UrlFont}{\ttfamily\smaller[2]\relax}
+#+LATEX_HEADER: \graphicspath{{../../img/}}
+#+LATEX_HEADER: \addtobeamertemplate{block begin}{}{\justifying}
+
+#+LATEX_HEADER: \captionsetup[figure]{labelformat=empty}
+
+#+LATEX_HEADER: \hypersetup{
+#+LATEX_HEADER:     colorlinks=true,
+#+LATEX_HEADER:     linkcolor={Accent},
+#+LATEX_HEADER:     citecolor={Accent},
+#+LATEX_HEADER:     urlcolor={Accent}
+#+LATEX_HEADER: }
+
+#+LATEX_HEADER: \makeatletter
+#+LATEX_HEADER: \setlength{\metropolis@titleseparator@linewidth}{1pt}
+#+LATEX_HEADER: \setlength{\metropolis@progressonsectionpage@linewidth}{2.5pt}
+# #+LATEX_HEADER: \setlength{\metropolis@progressinheadfoot@linewidth}{2pt}
+#+LATEX_HEADER: \makeatother
+:end:
+
+* Introdução
+:PROPERTIES:
+:UNNUMBERED: t
+:END:
+** Agradecimentos e Crédito
+A *Arnaud Legrand* e seu curso:
+
+#+latex: \bgroup\center
+#+latex: \includegraphics[height=3.4cm]{../../../img/smpe_preview.png}
+
+https://github.com/alegrand/SMPE
+
+#+latex: \egroup
+
+#+latex: \hfill\includegraphics[height=1.8cm]{../../../img/in_science_we_trust.jpg}
+
+** Dependências e outros Recursos
+- Site com *instruções* e mais *recursos*:
+
+#+latex: \bgroup\center
+#+latex: \includegraphics[height=3.4cm]{../../../img/repro_preview.png}
+
+https://phrb.github.io/PPD/lectures/org/reprodutibilidade/docs/index.html
+
+#+latex: \egroup
+
+- Temos uma imagem *Docker* com Jupyter Notebook, R, pacotes, e dados:
+
+#+latex: \begin{center}\begin{minipage}{0.75\textwidth}
+#+begin_SRC bash :results output :session *Shell* :eval no-export :exports code
+git clone https://github.com/phrb/PPD.git
+cd lectures/org/reprodutibilidade/exercicio_pratico && ./build.sh -b
+#+end_SRC
+#+latex: \end{minipage}\end{center}
+
+** Roteiro
+#+TOC: :headlines 3
+
+* O que é Ciência Reprodutível?
+:PROPERTIES:
+:CUSTOM_ID: sec:repro
+:END:
+** Provocação: O que Sobrevive do Trabalho Científico?
+#+ATTR_LATEX: :width 0.9\textwidth
+[[../../../img/iceberg_publication.png]]
+
+** O que é Ciência Reprodutível?
+#+latex: \begin{center}\colorbox{Highlight}{
+Trabalhar de forma *transparente* para
+diminuir a distância entre *quem produz e quem lê*
+#+latex: }\end{center}
+
+*** Figure                                                          :BMCOL:
+:PROPERTIES:
+:BEAMER_col: 0.4
+:END:
+
+#+ATTR_LATEX: :width 0.9\textwidth
+[[../../../img/iceberg_publication.png]]
+
+**** Trabalhar de forma transparente?
+#+latex: \bgroup\footnotesize
+- Caderno de laboratório e metodologia
+- Ambientes de software, controle de versão
+- Plataformas de compartilhamento, colaboração, e arquivamento
+#+latex:  \egroup
+
+*** Definições                                              :B_block:BMCOL:
+:PROPERTIES:
+:BEAMER_col: 0.6
+:BEAMER_env: block
+:END:
+
+- [[https://www.bipm.org/utils/common/documents/jcgm/JCGM_200_2012.pdf][Vocabulário
+  Internacional de Metrologia]] (VIM)
+
+Distingue entre *resultados* e *conclusões* que podem ser reproduzidos:
+
+- Pela mesma equipe, nas mesmas condições experimentais: /Repetibilidade/
+- Por uma equipe diferente, nas mesmas condições experimentais: /Replicabilidade/
+- Por   uma   equipe   diferente,    em   condições   experimentais   diferentes:
+  *Reprodutibilidade*
+
+** Há uma Crise de Reprodutibilidade?
+Resultados de um questionário com *1.500 cientistas*:
+
+*** Left                                                            :BMCOL:
+:PROPERTIES:
+:BEAMER_col: 0.5
+:END:
+
+#+ATTR_LATEX: :width 0.85\textwidth
+[[../../../img/nature_failed_reproduce.jpg]]
+
+*** Right                                                           :BMCOL:
+:PROPERTIES:
+:BEAMER_col: 0.5
+:END:
+
+#+ATTR_LATEX: :width 0.9\textwidth
+[[../../../img/nature_published.jpg]]
+
+*** Stop columns                                          :B_ignoreheading:
+:PROPERTIES:
+:BEAMER_env: ignoreheading
+:END:
+\bgroup\smallskip\small
+([[https://www.nature.com/news/1-500-scientists-lift-the-lid-on-reproducibility-1.19970][
+1,500 Scientists Lift the Lid on Reproducibility]], Nature, Maio de 2016)
+\egroup
+
+** O que Dificulta a Reprodutibilidade?
+Resultados de um questionário com *1.500 cientistas*:
+
+*** Left                                                            :BMCOL:
+:PROPERTIES:
+:BEAMER_col: 0.5
+:END:
+
+#+ATTR_LATEX: :width 0.9\textwidth
+[[../../../img/nature_irreproduce_1.jpg]]
+
+*** Dificultam a Reprodutibilidade                          :B_block:BMCOL:
+:PROPERTIES:
+:BEAMER_col: 0.5
+:BEAMER_env: block
+:END:
+
+- Reportagem *seletiva*
+- *Pressão* por publicações
+- Dificuldades com *estatística*
+- Falta de *acesso* aos dados
+
+*** Stop columns                                          :B_ignoreheading:
+:PROPERTIES:
+:BEAMER_env: ignoreheading
+:END:
+\bgroup\smallskip\small
+([[https://www.nature.com/news/1-500-scientists-lift-the-lid-on-reproducibility-1.19970][
+1,500 Scientists Lift the Lid on Reproducibility]], Nature, Maio de 2016)
+\egroup
+
+** O que pode Promover a Reprodutibilidade?
+Resultados de um questionário com *1.500 cientistas*:
+
+*** Left                                                            :BMCOL:
+:PROPERTIES:
+:BEAMER_col: 0.5
+:END:
+
+#+ATTR_LATEX: :width 0.9\textwidth
+[[../../../img/nature_boost_repro_1.jpg]]
+
+*** Promovem a Reprodutibilidade                            :B_block:BMCOL:
+:PROPERTIES:
+:BEAMER_col: 0.5
+:BEAMER_env: block
+:END:
+
+- Estudar *estatística*
+- *Colaboração* e *comunidade*
+- Melhores *incentivos*
+
+#+begin_export latex
+\begin{center}
+  \colorbox{Highlight}{\parbox{.85\columnwidth}{
+      Trabalhar de forma \alert{transparente} para
+      diminuir a distância entre \alert{quem produz e quem lê}}}
+\end{center}
+
+#+end_export
+
+
+*** Stop columns                                          :B_ignoreheading:
+:PROPERTIES:
+:BEAMER_env: ignoreheading
+:END:
+\bgroup\smallskip\small
+([[https://www.nature.com/news/1-500-scientists-lift-the-lid-on-reproducibility-1.19970][
+1,500 Scientists Lift the Lid on Reproducibility]], Nature, Maio de 2016)
+\egroup
+
+* Desafios e Abordagens para se fazer Ciência Reprodutível
+:PROPERTIES:
+:CUSTOM_ID: sec:challenges
+:END:
+** Ferramentas Existentes e Padrões Emergentes
+:PROPERTIES:
+:BEAMER_opt: t
+:END:
+
+#+LaTeX: \begin{columns}\begin{column}[t]{.4\linewidth}\centering
+\bf *Cadernos de Laboratório*
+
+#+ATTR_LaTeX: :width .7\textwidth
+file:../../../img/jupyterpreview.png
+
+#+LaTeX: \includegraphics[height=.7cm]{../../../img/Jupyter_logo.png}
+#+LaTeX: \includegraphics[height=.7cm]{../../../img/OrgMode_logo.png}
+#+LaTeX: \includegraphics[height=.7cm]{../../../img/RStudio_logo.png}
+#+ATTR_LaTeX: :width 0.65\textwidth
+file:../../../img/workflows.png
+
+#+LaTeX: \end{column}\begin{column}[t]{.35\linewidth}\centering
+\bf *Ambientes de Software*
+
+#+ATTR_LaTeX: :height 2cm
+file:../../../img/dependency_trees/matplotlib.pdf
+#+ATTR_LaTeX: :height 1.1cm
+file:../../../img/platform_diversity.png
+
+#+LaTeX: \includegraphics[height=.8cm]{../../../img/docker_logo.png}
+#+LaTeX: \includegraphics[height=.8cm]{../../../img/singularity_logo.png}
+
+#+LaTeX: \includegraphics[height=.7cm]{../../../img/reprozip.png}
+
+#+LaTeX: \includegraphics[height=.8cm]{../../../img/Guix_logo.png}
+#+LaTeX: \includegraphics[height=.8cm]{../../../img/nix_logo.png}
+
+#+LaTeX: \end{column}\begin{column}[t]{.35\linewidth}\centering
+\bf *Plataformas de Compartilhamento*\bigskip
+
+#+LaTeX: \includegraphics[height=1cm]{../../../img/git_logo.png}
+#+LaTeX: \includegraphics[height=1cm]{../../../img/github_logo.png}
+#+LaTeX: \includegraphics[height=1cm]{../../../img/gitlab_logo.png}
+#+LaTeX: \includegraphics[height=1cm]{../../../img/JupyterHub_logo.png}
+#+LaTeX: \includegraphics[height=1cm]{../../../img/ArXiv-web.png}
+#+LaTeX: \includegraphics[height=1cm]{../../../img/LogoHAL.png}
+#+LaTeX: \includegraphics[height=1cm]{../../../img/Figshare-logo.png}
+#+LaTeX: \includegraphics[height=1cm]{../../../img/Zenodo-logo.jpg}
+#+LaTeX: \includegraphics[height=1cm]{../../../img/swh-logo.png}
+
+#+LaTeX: \end{column}\end{columns}\bigskip
+** Cadernos de Laboratório
+#+LaTeX: \includegraphics<+>[width=\linewidth]{../../../img/notebook/notebooks_0.pdf}%
+#+LaTeX: \includegraphics<+->[width=\linewidth]{../../../img/notebook/notebooks.pdf}%
+
+#+BEGIN_EXPORT latex
+\begin{overlayarea}{\linewidth}{0cm}
+  \vspace{-1.8cm}
+  \begin{center}
+    \includegraphics<+>[height=.7cm]{../../../img/Jupyter_logo.png}
+    \includegraphics<.>[height=.7cm]{../../../img/OrgMode_logo.png}
+    \includegraphics<.>[height=.7cm]{../../../img/RStudio_logo.png}
+
+    \only<.>{\href{https://jupyter.org/try}{https://jupyter.org/try}}
+  \end{center}
+\end{overlayarea}
+#+END_EXPORT
+** Ambientes de Software: O que se Esconde nas Dependências?
+#+begin_SRC bash :results output :session *Shell* :eval no-export :exports code
+$ pacman -Qi python-matplotlib
+#+end_SRC
+
+#+latex: \smaller[3]
+#+begin_example
+Name            : python-matplotlib
+Version         : 3.4.1-2
+Depends On      : freetype2  python-cycler  python-dateutil  python-kiwisolver
+                  python-numpy  python-pillow  python-pyparsing  qhull
+Optional Deps   : tk: Tk{Agg,Cairo} backends [installed]
+                  pyside2: alternative for Qt5{Agg,Cairo} backends
+                  python-pyqt5: Qt5{Agg,Cairo} backends [installed]
+                  python-gobject: for GTK3{Agg,Cairo} backend [installed]
+                  python-wxpython: WX{,Agg,Cairo} backend
+                  python-cairo: {GTK3,Qt5,Tk,WX}Cairo backends [installed]
+                  python-cairocffi: alternative for Cairo backends
+                  python-tornado: WebAgg backend [installed]
+                  ffmpeg: for saving movies [installed]
+                  imagemagick: for saving animated gifs [installed]
+                  ghostscript: usetex dependencies [installed]
+                  texlive-bin: usetex dependencies [installed]
+                  texlive-latexextra: usetex usage with pdflatex [installed]
+                  python-certifi: https support [installed]
+#+end_example
+
+** Ambientes de Software: O que se Esconde nas Dependências?
+#+LaTeX: \includegraphics<+->[width=0.97\textwidth]{../../../img/dependency_trees/matplotlib.pdf}%
+
+#+BEGIN_EXPORT latex
+\begin{overlayarea}{\linewidth}{0cm}
+  \vspace{-2.2cm}
+  \begin{center}
+    \includegraphics<+>[height=.8cm]{../../../img/reprozip.png} \qquad
+    \includegraphics<.>[height=1cm]{../../../img/docker_logo.png}
+    \includegraphics<.>[height=1cm]{../../../img/singularity_logo.png}\qquad
+    \includegraphics<.>[height=1cm]{../../../img/Guix_logo.png}
+    \includegraphics<.>[height=1cm]{../../../img/nix_logo.png}
+  \end{center}
+\end{overlayarea}
+#+END_EXPORT
+** Plataformas de Compartilhamento e Arquivamento
+\small
+- D.   Spinellis.   /[[https://www.spinellis.gr/sw/url-decay/][The   Decay   and
+  Failures of URL References]]/. CACM, 46(1), 2003
+  #+BEGIN_QUOTE
+  "A meia-vida de uma referência em URL é de aproximadamente 4 anos após sua
+  publicação"
+  #+END_QUOTE
+
+-  P. Habibzadeh. /[[https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3885908/][Decay of References to Web sites in  Articles Published in General Medical Journals:
+  Mainstream vs Small Journals]]/.  Applied Clinical Informatics. 4 (4), 2013
+  #+BEGIN_QUOTE
+  "a meia-vida durou entre 2,2 anos no EMHJ e 5,3 anos no BMJ"
+  #+END_QUOTE
+
+\normalsize
+- \alert{Arquivamento de Artigos} ::
+     #+LaTeX: \raisebox{-1.5ex}{\includegraphics[height=.8cm]{../../../img/ArXiv-web.png}}
+     #+LaTeX: \raisebox{-1.5ex}{\includegraphics[height=.8cm]{../../../img/LogoHAL.png}}
+     #+LaTeX: \hfill\raisebox{-3em}{\includegraphics[height=1.8cm]{../../../img/Internet-archive.png}}\vspace{-2em}
+- \alert{Arquivamento de Dados} ::
+     #+LaTeX: \raisebox{-1.5ex}{\includegraphics[height=.8cm]{../../../img/Figshare-logo.png}}
+     #+LaTeX: \raisebox{-1.5ex}{\includegraphics[height=.8cm]{../../../img/Zenodo-logo.jpg}}
+
+- \alert{Arquivamento de Software} ::
+     #+LaTeX: \raisebox{-2.4ex}{\includegraphics[height=1cm]{../../../img/swh-logo.png}}
+
+#+LaTeX: \hfill \raisebox{-1ex}{\includegraphics[height=.8cm]{../../../img/git_logo.png}}
+#+LaTeX: \raisebox{-.5ex}{\includegraphics[height=.8cm]{../../../img/github_logo.png}} or
+#+LaTeX: \raisebox{-1.4ex}{\includegraphics[height=.8cm]{../../../img/gitlab_logo.png}}
+$=$ excelentes para colaborações ($\ne$ arquivamento)\hfill\null
+** É Possível Garantir a Reprodutibilidade?
+*Não*. Mas podemos melhorar muito se nos comprometermos a sempre:
+
+1. Divulgar, praticar, e difundir a *reprodutibilidade*
+2. Manter todo código, texto, e dados sob *controle de versão*
+3. *Verificar* e *validar* resultados
+4. *Compartilhar* dados, scripts, e figuras *sob  CC-BY*
+5. Disponibilizar *preprints* no arXiv no *momento da submissão*
+6. Disponibilizar *código* no *momento da submissão*
+7. Adicionar uma seção sobre *reprodutibilidade* ao fim de cada artigo
+8. Manter *presença atualizada na internet*
+
+\vspace{1em}
+
+ (Manifesto: [[https://hal.inria.fr/hal-01367344/document][WSSSPE]],
+ [[http://lorenabarba.com/gallery/reproducibility-pi-manifesto/][Lorena Barba]],
+ [[https://www.go-fair.org/fair-principles/][FAIR]])
+** Mudando as Práticas de Publicação e Pesquisa
+- Avaliação de Artefatos e Insígnias da ACM
+     #+BEGIN_CENTER
+     \includegraphics[height=1cm]{../../../img/ae_badge1.png}
+     \includegraphics[height=1cm]{../../../img/ae_badge2.png}
+     \includegraphics[height=1cm]{../../../img/acm_badges.pdf}
+     #+END_CENTER
+- Grandes Conferências que fazem esforços
+  - [[https://sc19.supercomputing.org/submit/reproducibility-initiative/][Supercomputing]]: Descrição de Artefatos (AD) *obrigatória*, Avaliação de
+    Artefatos (AE) ainda é  *opcional*, revisão *duplo-cega* vs. *Reprodutibilidade*
+    - Dois comitês: Reprodutibilidade e Programa
+  - ACM HotNets: Anonimizar repositórios para os revisores
+    - Autores se comprometem
+  - ACM Middleware: Processo de revisão cego, depois aberto
+  - [[https://nips.cc/Conferences/2019/CallForPapers][NeurIPS]], [[https://reproducibility-challenge.github.io/iclr_2019/][ICLR]]: *Revisões Abertas*, desafios de reprodutibilidade
+    - [[https://www.youtube.com/watch?v=Kee4ch3miVA][Joelle Pineau @ NeurIPS'18]]
+  - [[http://db-reproducibility.seas.harvard.edu/papers/index.html][ACM SIGMOD 2015-2019]], /Most Reproducible Paper Award/...
+- Cultura está em evolução, as pessoas começam a se importar e disponibilizar materiais, *erros são encontrados e consertados*
+** Pilares da Ciência Aberta
+#+begin_export latex
+\begin{enumerate}
+\item Acesso Aberto \qquad\includegraphics[height=1cm]{../../../img/open-access.png}
+\item Dados Abertos \qquad\raisebox{-1.8em}{\includegraphics[height=1cm]{../../../img/FAIR_data_principles.jpg}}\vspace{-1em}
+\item Software Livre e Aberto \hspace{3cm}\raisebox{-1.8em}{\includegraphics[height=1cm]{../../../img/open-source.png}\includegraphics[height=1cm]{../../../img/gnu.png}\includegraphics[height=1cm]{../../../img/tux.png}}\vspace{-1.5em}
+  \begin{itemize}
+  \item \emph{Hardware Aberto}
+  \end{itemize}
+\item \alert{Metodologia Aberta} (\alert{Ciência Reprodutível})
+  \begin{itemize}
+  \item \emph{Ciência com Notebooks Abertos}
+  \item \emph{Infrastrutura para Ciência Aberta}
+  \end{itemize}\vspace{-1cm}
+\item \alert{Revisão por pares Aberta} \hfill\raisebox{-1em}{\includegraphics[height=2cm]{../../../img/open-review.png}}
+\item Recursos Educacionais Abertos \includegraphics[height=1cm]{../../../img/open-educational-resources.png}
+\end{enumerate}
+#+end_export
+
+*** About Workflows                                              :noexport:
+- PeerJ: revisor escolhe se quer desanonimizar
+- Workflows: comparilhamento de experimentos
+  - https://www.myexperiment.org/home
+  - https://www.w3.org/TR/prov-dm/
+  - https://pegasus.isi.edu/
+
+** Estatística: Machine Learning?
+\vspace{-1.1em}
+
+\bgroup\small
+Tabela                     no                    prefácio                     de
+/[[https://link.springer.com/book/10.1007/978-0-387-21736-9][All              of
+Statistics]]/, Larry Wasserman
+\egroup
+
+#+begin_export latex
+\vspace{-1em}
+\begin{center}
+  \smaller[0]
+  \bgroup
+  \def\arraystretch{1.6}%
+  \resizebox{0.9\textwidth}{!}{
+  \begin{tabular}{>{\raggedright}m{0.38\textwidth}m{0.25\textwidth}m{0.28\textwidth}}
+    \alert{Conceito} & \alert{Estatística} & \alert{Aprendizado \mbox{de Máquina}}\\
+    \midrule
+    Usar dados para estimar \mbox{quantidades} \mbox{desconhecidas} & Estimação & Aprendizado\\
+    Predizer \(\mathbf{y}\) discreto a partir de \(\mathbf{x}\) & Classificação & Aprendizado \mbox{Supervisionado}\\
+    Dividir dados em grupos & Clusterização & Aprendizado \mbox{Não-Supervisionado}\\
+    \((\mathbf{x}_1,\mathbf{y}_1),\dots,(\mathbf{x}_N,\mathbf{y}_N)\) & Desenho Experimental & Conjunto \mbox{de Treinamento}\\
+    \((\mathbf{x}_1,\dots,\mathbf{x}_N)\) & Variáveis Preditoras & Características\\
+    Intervalo contendo uma estimativa & Intervalo de Confiança & --
+  \end{tabular}
+  }
+    \egroup
+\end{center}
+#+end_export
+
+#+begin_export latex
+\begin{center}
+  \colorbox{Highlight}{Conceitos   de  estatística   ajudam   a  compreender   e
+    contextualizar Machine Leaning}
+\end{center}
+#+end_export
+
+** Análise Estatística
+*** Desafios                                                :B_block:BMCOL:
+:PROPERTIES:
+:BEAMER_col: 0.5
+:BEAMER_env: block
+:END:
+- Como *planejar* experimentos?
+- Como *analisar* resultados?
+- O que mostrar nos *gráficos*?
+- [[https://pt.wikipedia.org/wiki/Quarteto_de_Anscombe][Quarteto de Anscombe]]
+- [[http://www.thefunctionalart.com/2016/08/download-datasaurus-never-trust-summary.html][Datasaurus]]
+  [[https://www.autodesk.com/research/publications/same-stats-different-graphs][Dozen]]:
+  não confiar em *sínteses*
+*** Abordagens                                              :B_block:BMCOL:
+:PROPERTIES:
+:BEAMER_col: 0.5
+:BEAMER_env: block
+:END:
+- *Gráficos*, antes de qualquer análise
+- *Análises mais simples* primeiro: mais fáceis de interpretar
+- Controle de versão
+- Documentos computacionais
+- Desenho de Experimentos
+* Mão na Massa: Ferramentas para Reprodutibilidade
+:PROPERTIES:
+:CUSTOM_ID: sec:handson
+:END:
+
+** Análise Estatística: Exercício Prático no Site
+- Site com *instruções* e mais *recursos*:
+
+#+latex: \bgroup\center
+#+latex: \includegraphics[height=3.4cm]{../../../img/repro_preview.png}
+
+https://phrb.github.io/PPD/lectures/org/reprodutibilidade/docs/index.html
+
+#+latex: \egroup
+
+- Temos uma imagem *Docker* com Jupyter Notebook, R, pacotes, e dados:
+
+#+latex: \begin{center}\begin{minipage}{0.75\textwidth}
+#+begin_SRC bash :results output :session *Shell* :eval no-export :exports code
+git clone https://github.com/phrb/PPD.git
+cd lectures/org/reprodutibilidade/exercicio_pratico && ./build.sh -b
+#+end_SRC
+#+latex: \end{minipage}\end{center}
+
+* Conclusão
+:PROPERTIES:
+:UNNUMBERED: t
+:END:
+
+** É possível fazer Ciência (mais) Reprodutível!
+:PROPERTIES:
+:BEAMER_opt: t
+:END:
+
+#+LaTeX: \begin{columns}\begin{column}[t]{.4\linewidth}\centering
+\bf *Cadernos de Laboratório*
+
+#+ATTR_LaTeX: :width .7\textwidth
+file:../../../img/jupyterpreview.png
+
+#+LaTeX: \includegraphics[height=.7cm]{../../../img/Jupyter_logo.png}
+#+LaTeX: \includegraphics[height=.7cm]{../../../img/OrgMode_logo.png}
+#+LaTeX: \includegraphics[height=.7cm]{../../../img/RStudio_logo.png}
+#+ATTR_LaTeX: :width 0.65\textwidth
+file:../../../img/workflows.png
+
+#+LaTeX: \end{column}\begin{column}[t]{.35\linewidth}\centering
+\bf *Ambientes de Software*
+
+#+ATTR_LaTeX: :height 2cm
+file:../../../img/dependency_trees/matplotlib.pdf
+#+ATTR_LaTeX: :height 1.1cm
+file:../../../img/platform_diversity.png
+
+#+LaTeX: \includegraphics[height=.8cm]{../../../img/docker_logo.png}
+#+LaTeX: \includegraphics[height=.8cm]{../../../img/singularity_logo.png}
+
+#+LaTeX: \includegraphics[height=.7cm]{../../../img/reprozip.png}
+
+#+LaTeX: \includegraphics[height=.8cm]{../../../img/Guix_logo.png}
+#+LaTeX: \includegraphics[height=.8cm]{../../../img/nix_logo.png}
+
+#+LaTeX: \end{column}\begin{column}[t]{.35\linewidth}\centering
+\bf *Plataformas de Compartilhamento*\bigskip
+
+#+LaTeX: \includegraphics[height=1cm]{../../../img/git_logo.png}
+#+LaTeX: \includegraphics[height=1cm]{../../../img/github_logo.png}
+#+LaTeX: \includegraphics[height=1cm]{../../../img/gitlab_logo.png}
+#+LaTeX: \includegraphics[height=1cm]{../../../img/JupyterHub_logo.png}
+#+LaTeX: \includegraphics[height=1cm]{../../../img/ArXiv-web.png}
+#+LaTeX: \includegraphics[height=1cm]{../../../img/LogoHAL.png}
+#+LaTeX: \includegraphics[height=1cm]{../../../img/Figshare-logo.png}
+#+LaTeX: \includegraphics[height=1cm]{../../../img/Zenodo-logo.jpg}
+#+LaTeX: \includegraphics[height=1cm]{../../../img/swh-logo.png}
+
+#+LaTeX: \end{column}\end{columns}\bigskip
+** É possível fazer Ciência (mais) Aberta e Reprodutível!
+#+begin_export latex
+\begin{enumerate}
+\item Acesso Aberto \qquad\includegraphics[height=1cm]{../../../img/open-access.png}
+\item Dados Abertos \qquad\raisebox{-1.8em}{\includegraphics[height=1cm]{../../../img/FAIR_data_principles.jpg}}\vspace{-1em}
+\item Software Livre e Aberto \hspace{3cm}\raisebox{-1.8em}{\includegraphics[height=1cm]{../../../img/open-source.png}\includegraphics[height=1cm]{../../../img/gnu.png}\includegraphics[height=1cm]{../../../img/tux.png}}\vspace{-1.5em}
+  \begin{itemize}
+  \item \emph{Hardware Aberto}
+  \end{itemize}
+\item \alert{Metodologia Aberta} (\alert{Ciência Reprodutível})
+  \begin{itemize}
+  \item \emph{Ciência com Notebooks Abertos}
+  \item \emph{Infrastrutura para Ciência Aberta}
+  \end{itemize}\vspace{-1cm}
+\item \alert{Revisão por pares Aberta} \hfill\raisebox{-1em}{\includegraphics[height=2cm]{../../../img/open-review.png}}
+\item Recursos Educacionais Abertos \includegraphics[height=1cm]{../../../img/open-educational-resources.png}
+\end{enumerate}
+#+end_export
+* Ending Title :B_ignoreheading:
+:PROPERTIES:
+:BEAMER_env: ignoreheading
+:END:
+#+LATEX: \maketitle
+* Emacs Setup                                      :noexport:B_ignoreheading:
+:PROPERTIES:
+:BEAMER_env: ignoreheading
+:END:
+See [[LaTeX Setup]] above for the beamer configuration
+
+** Use XeLaTeX
+If you  accept this definition  when loading the  buffer, this variable  will be
+modified  locally to  the buffer.  This allows  using XeLaTeX  for exporting  to
+beamer pdf.
+
+# Local Variables:
+# eval: (setq-local org-latex-pdf-process (list "latexmk -xelatex %f"))
+# End:
