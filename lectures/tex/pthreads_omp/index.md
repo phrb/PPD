@@ -8,7 +8,7 @@
 ## Conteúdo
 
 
-### [Slides](https://github.com/phrb/PPD/raw/slides/lectures/tex/pthreads_omp/src/pthreads-openmp.pdf)
+### [Slides](https://github.com/phrb/PPD/raw/main/lectures/tex/pthreads_omp/src/pthreads-openmp.pdf)
 
 
 ### Exemplos de Código
