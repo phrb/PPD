@@ -75,7 +75,7 @@ See [[Emacs Setup]] below for local buffer variables
 #+LATEX_HEADER:   tabsize=2,
 #+LATEX_HEADER: }
 #+LATEX_HEADER: \renewcommand*{\UrlFont}{\ttfamily\smaller[2]\relax}
-#+LATEX_HEADER: \graphicspath{{../../img/}}
+#+LATEX_HEADER: \graphicspath{{../../ppd-images/}}
 #+LATEX_HEADER: \addtobeamertemplate{block begin}{}{\justifying}
 
 #+LATEX_HEADER: \captionsetup[figure]{labelformat=empty}
@@ -102,19 +102,19 @@ See [[Emacs Setup]] below for local buffer variables
 A *Arnaud Legrand* e seu curso:
 
 #+latex: \bgroup\center
-#+latex: \includegraphics[height=3.4cm]{../../../img/smpe_preview.png}
+#+latex: \includegraphics[height=3.4cm]{../../../ppd-images/smpe_preview.png}
 
 https://github.com/alegrand/SMPE
 
 #+latex: \egroup
 
-#+latex: \hfill\includegraphics[height=1.8cm]{../../../img/in_science_we_trust.jpg}
+#+latex: \hfill\includegraphics[height=1.8cm]{../../../ppd-images/in_science_we_trust.jpg}
 
 ** Dependências e outros Recursos
 - Site com *instruções* e mais *recursos*:
 
 #+latex: \bgroup\center
-#+latex: \includegraphics[height=3.4cm]{../../../img/repro_preview.png}
+#+latex: \includegraphics[height=3.4cm]{../../../ppd-images/repro_preview.png}
 
 https://phrb.github.io/PPD/lectures/org/reprodutibilidade/docs/index.html
 
@@ -138,7 +138,7 @@ cd lectures/org/reprodutibilidade/exercicio_pratico && ./build.sh -b
 :END:
 ** Provocação: O que Sobrevive do Trabalho Científico?
 #+ATTR_LATEX: :width 0.9\textwidth
-[[../../../img/iceberg_publication.png]]
+[[../../../ppd-images/iceberg_publication.png]]
 
 ** O que é Ciência Reprodutível?
 #+latex: \begin{center}\colorbox{Highlight}{
@@ -152,7 +152,7 @@ diminuir a distância entre *quem produz e quem lê*
 :END:
 
 #+ATTR_LATEX: :width 0.9\textwidth
-[[../../../img/iceberg_publication.png]]
+[[../../../ppd-images/iceberg_publication.png]]
 
 **** Trabalhar de forma transparente?
 #+latex: \bgroup\footnotesize
@@ -186,7 +186,7 @@ Resultados de um questionário com *1.500 cientistas*:
 :END:
 
 #+ATTR_LATEX: :width 0.85\textwidth
-[[../../../img/nature_failed_reproduce.jpg]]
+[[../../../ppd-images/nature_failed_reproduce.jpg]]
 
 *** Right                                                           :BMCOL:
 :PROPERTIES:
@@ -194,7 +194,7 @@ Resultados de um questionário com *1.500 cientistas*:
 :END:
 
 #+ATTR_LATEX: :width 0.9\textwidth
-[[../../../img/nature_published.jpg]]
+[[../../../ppd-images/nature_published.jpg]]
 
 *** Stop columns                                          :B_ignoreheading:
 :PROPERTIES:
@@ -214,7 +214,7 @@ Resultados de um questionário com *1.500 cientistas*:
 :END:
 
 #+ATTR_LATEX: :width 0.9\textwidth
-[[../../../img/nature_irreproduce_1.jpg]]
+[[../../../ppd-images/nature_irreproduce_1.jpg]]
 
 *** Dificultam a Reprodutibilidade                          :B_block:BMCOL:
 :PROPERTIES:
@@ -245,7 +245,7 @@ Resultados de um questionário com *1.500 cientistas*:
 :END:
 
 #+ATTR_LATEX: :width 0.9\textwidth
-[[../../../img/nature_boost_repro_1.jpg]]
+[[../../../ppd-images/nature_boost_repro_1.jpg]]
 
 *** Promovem a Reprodutibilidade                            :B_block:BMCOL:
 :PROPERTIES:
@@ -289,55 +289,55 @@ Resultados de um questionário com *1.500 cientistas*:
 \bf *Cadernos de Laboratório*
 
 #+ATTR_LaTeX: :width .7\textwidth
-file:../../../img/jupyterpreview.png
+file:../../../ppd-images/jupyterpreview.png
 
-#+LaTeX: \includegraphics[height=.7cm]{../../../img/Jupyter_logo.png}
-#+LaTeX: \includegraphics[height=.7cm]{../../../img/OrgMode_logo.png}
-#+LaTeX: \includegraphics[height=.7cm]{../../../img/RStudio_logo.png}
+#+LaTeX: \includegraphics[height=.7cm]{../../../ppd-images/Jupyter_logo.png}
+#+LaTeX: \includegraphics[height=.7cm]{../../../ppd-images/OrgMode_logo.png}
+#+LaTeX: \includegraphics[height=.7cm]{../../../ppd-images/RStudio_logo.png}
 #+ATTR_LaTeX: :width 0.65\textwidth
-file:../../../img/workflows.png
+file:../../../ppd-images/workflows.png
 
 #+LaTeX: \end{column}\begin{column}[t]{.35\linewidth}\centering
 \bf *Ambientes de Software*
 
 #+ATTR_LaTeX: :height 2cm
-file:../../../img/dependency_trees/matplotlib.pdf
+file:../../../ppd-images/dependency_trees/matplotlib.pdf
 #+ATTR_LaTeX: :height 1.1cm
-file:../../../img/platform_diversity.png
+file:../../../ppd-images/platform_diversity.png
 
-#+LaTeX: \includegraphics[height=.8cm]{../../../img/docker_logo.png}
-#+LaTeX: \includegraphics[height=.8cm]{../../../img/singularity_logo.png}
+#+LaTeX: \includegraphics[height=.8cm]{../../../ppd-images/docker_logo.png}
+#+LaTeX: \includegraphics[height=.8cm]{../../../ppd-images/singularity_logo.png}
 
-#+LaTeX: \includegraphics[height=.7cm]{../../../img/reprozip.png}
+#+LaTeX: \includegraphics[height=.7cm]{../../../ppd-images/reprozip.png}
 
-#+LaTeX: \includegraphics[height=.8cm]{../../../img/Guix_logo.png}
-#+LaTeX: \includegraphics[height=.8cm]{../../../img/nix_logo.png}
+#+LaTeX: \includegraphics[height=.8cm]{../../../ppd-images/Guix_logo.png}
+#+LaTeX: \includegraphics[height=.8cm]{../../../ppd-images/nix_logo.png}
 
 #+LaTeX: \end{column}\begin{column}[t]{.35\linewidth}\centering
 \bf *Plataformas de Compartilhamento*\bigskip
 
-#+LaTeX: \includegraphics[height=1cm]{../../../img/git_logo.png}
-#+LaTeX: \includegraphics[height=1cm]{../../../img/github_logo.png}
-#+LaTeX: \includegraphics[height=1cm]{../../../img/gitlab_logo.png}
-#+LaTeX: \includegraphics[height=1cm]{../../../img/JupyterHub_logo.png}
-#+LaTeX: \includegraphics[height=1cm]{../../../img/ArXiv-web.png}
-#+LaTeX: \includegraphics[height=1cm]{../../../img/LogoHAL.png}
-#+LaTeX: \includegraphics[height=1cm]{../../../img/Figshare-logo.png}
-#+LaTeX: \includegraphics[height=1cm]{../../../img/Zenodo-logo.jpg}
-#+LaTeX: \includegraphics[height=1cm]{../../../img/swh-logo.png}
+#+LaTeX: \includegraphics[height=1cm]{../../../ppd-images/git_logo.png}
+#+LaTeX: \includegraphics[height=1cm]{../../../ppd-images/github_logo.png}
+#+LaTeX: \includegraphics[height=1cm]{../../../ppd-images/gitlab_logo.png}
+#+LaTeX: \includegraphics[height=1cm]{../../../ppd-images/JupyterHub_logo.png}
+#+LaTeX: \includegraphics[height=1cm]{../../../ppd-images/ArXiv-web.png}
+#+LaTeX: \includegraphics[height=1cm]{../../../ppd-images/LogoHAL.png}
+#+LaTeX: \includegraphics[height=1cm]{../../../ppd-images/Figshare-logo.png}
+#+LaTeX: \includegraphics[height=1cm]{../../../ppd-images/Zenodo-logo.jpg}
+#+LaTeX: \includegraphics[height=1cm]{../../../ppd-images/swh-logo.png}
 
 #+LaTeX: \end{column}\end{columns}\bigskip
 ** Cadernos de Laboratório
-#+LaTeX: \includegraphics<+>[width=\linewidth]{../../../img/notebook/notebooks_0.pdf}%
-#+LaTeX: \includegraphics<+->[width=\linewidth]{../../../img/notebook/notebooks.pdf}%
+#+LaTeX: \includegraphics<+>[width=\linewidth]{../../../ppd-images/notebook/notebooks_0.pdf}%
+#+LaTeX: \includegraphics<+->[width=\linewidth]{../../../ppd-images/notebook/notebooks.pdf}%
 
 #+BEGIN_EXPORT latex
 \begin{overlayarea}{\linewidth}{0cm}
   \vspace{-1.8cm}
   \begin{center}
-    \includegraphics<+>[height=.7cm]{../../../img/Jupyter_logo.png}
-    \includegraphics<.>[height=.7cm]{../../../img/OrgMode_logo.png}
-    \includegraphics<.>[height=.7cm]{../../../img/RStudio_logo.png}
+    \includegraphics<+>[height=.7cm]{../../../ppd-images/Jupyter_logo.png}
+    \includegraphics<.>[height=.7cm]{../../../ppd-images/OrgMode_logo.png}
+    \includegraphics<.>[height=.7cm]{../../../ppd-images/RStudio_logo.png}
 
     \only<.>{\href{https://jupyter.org/try}{https://jupyter.org/try}}
   \end{center}
@@ -371,17 +371,17 @@ Optional Deps   : tk: Tk{Agg,Cairo} backends [installed]
 #+end_example
 
 ** Ambientes de Software: O que se Esconde nas Dependências?
-#+LaTeX: \includegraphics<+->[width=0.97\textwidth]{../../../img/dependency_trees/matplotlib.pdf}%
+#+LaTeX: \includegraphics<+->[width=0.97\textwidth]{../../../ppd-images/dependency_trees/matplotlib.pdf}%
 
 #+BEGIN_EXPORT latex
 \begin{overlayarea}{\linewidth}{0cm}
   \vspace{-2.2cm}
   \begin{center}
-    \includegraphics<+>[height=.8cm]{../../../img/reprozip.png} \qquad
-    \includegraphics<.>[height=1cm]{../../../img/docker_logo.png}
-    \includegraphics<.>[height=1cm]{../../../img/singularity_logo.png}\qquad
-    \includegraphics<.>[height=1cm]{../../../img/Guix_logo.png}
-    \includegraphics<.>[height=1cm]{../../../img/nix_logo.png}
+    \includegraphics<+>[height=.8cm]{../../../ppd-images/reprozip.png} \qquad
+    \includegraphics<.>[height=1cm]{../../../ppd-images/docker_logo.png}
+    \includegraphics<.>[height=1cm]{../../../ppd-images/singularity_logo.png}\qquad
+    \includegraphics<.>[height=1cm]{../../../ppd-images/Guix_logo.png}
+    \includegraphics<.>[height=1cm]{../../../ppd-images/nix_logo.png}
   \end{center}
 \end{overlayarea}
 #+END_EXPORT
@@ -402,19 +402,19 @@ Optional Deps   : tk: Tk{Agg,Cairo} backends [installed]
 
 \normalsize
 - \alert{Arquivamento de Artigos} ::
-     #+LaTeX: \raisebox{-1.5ex}{\includegraphics[height=.8cm]{../../../img/ArXiv-web.png}}
-     #+LaTeX: \raisebox{-1.5ex}{\includegraphics[height=.8cm]{../../../img/LogoHAL.png}}
-     #+LaTeX: \hfill\raisebox{-3em}{\includegraphics[height=1.8cm]{../../../img/Internet-archive.png}}\vspace{-2em}
+     #+LaTeX: \raisebox{-1.5ex}{\includegraphics[height=.8cm]{../../../ppd-images/ArXiv-web.png}}
+     #+LaTeX: \raisebox{-1.5ex}{\includegraphics[height=.8cm]{../../../ppd-images/LogoHAL.png}}
+     #+LaTeX: \hfill\raisebox{-3em}{\includegraphics[height=1.8cm]{../../../ppd-images/Internet-archive.png}}\vspace{-2em}
 - \alert{Arquivamento de Dados} ::
-     #+LaTeX: \raisebox{-1.5ex}{\includegraphics[height=.8cm]{../../../img/Figshare-logo.png}}
-     #+LaTeX: \raisebox{-1.5ex}{\includegraphics[height=.8cm]{../../../img/Zenodo-logo.jpg}}
+     #+LaTeX: \raisebox{-1.5ex}{\includegraphics[height=.8cm]{../../../ppd-images/Figshare-logo.png}}
+     #+LaTeX: \raisebox{-1.5ex}{\includegraphics[height=.8cm]{../../../ppd-images/Zenodo-logo.jpg}}
 
 - \alert{Arquivamento de Software} ::
-     #+LaTeX: \raisebox{-2.4ex}{\includegraphics[height=1cm]{../../../img/swh-logo.png}}
+     #+LaTeX: \raisebox{-2.4ex}{\includegraphics[height=1cm]{../../../ppd-images/swh-logo.png}}
 
-#+LaTeX: \hfill \raisebox{-1ex}{\includegraphics[height=.8cm]{../../../img/git_logo.png}}
-#+LaTeX: \raisebox{-.5ex}{\includegraphics[height=.8cm]{../../../img/github_logo.png}} or
-#+LaTeX: \raisebox{-1.4ex}{\includegraphics[height=.8cm]{../../../img/gitlab_logo.png}}
+#+LaTeX: \hfill \raisebox{-1ex}{\includegraphics[height=.8cm]{../../../ppd-images/git_logo.png}}
+#+LaTeX: \raisebox{-.5ex}{\includegraphics[height=.8cm]{../../../ppd-images/github_logo.png}} or
+#+LaTeX: \raisebox{-1.4ex}{\includegraphics[height=.8cm]{../../../ppd-images/gitlab_logo.png}}
 $=$ excelentes para colaborações ($\ne$ arquivamento)\hfill\null
 ** É Possível Garantir a Reprodutibilidade?
 *Não*. Mas podemos melhorar muito se nos comprometermos a sempre:
@@ -436,9 +436,9 @@ $=$ excelentes para colaborações ($\ne$ arquivamento)\hfill\null
 ** Mudando as Práticas de Publicação e Pesquisa
 - Avaliação de Artefatos e Insígnias da ACM
      #+BEGIN_CENTER
-     \includegraphics[height=1cm]{../../../img/ae_badge1.png}
-     \includegraphics[height=1cm]{../../../img/ae_badge2.png}
-     \includegraphics[height=1cm]{../../../img/acm_badges.pdf}
+     \includegraphics[height=1cm]{../../../ppd-images/ae_badge1.png}
+     \includegraphics[height=1cm]{../../../ppd-images/ae_badge2.png}
+     \includegraphics[height=1cm]{../../../ppd-images/acm_badges.pdf}
      #+END_CENTER
 - Grandes Conferências que fazem esforços
   - [[https://sc19.supercomputing.org/submit/reproducibility-initiative/][Supercomputing]]: Descrição de Artefatos (AD) *obrigatória*, Avaliação de
@@ -454,9 +454,9 @@ $=$ excelentes para colaborações ($\ne$ arquivamento)\hfill\null
 ** Pilares da Ciência Aberta
 #+begin_export latex
 \begin{enumerate}
-\item Acesso Aberto \qquad\includegraphics[height=1cm]{../../../img/open-access.png}
-\item Dados Abertos \qquad\raisebox{-1.8em}{\includegraphics[height=1cm]{../../../img/FAIR_data_principles.jpg}}\vspace{-1em}
-\item Software Livre e Aberto \hspace{3cm}\raisebox{-1.8em}{\includegraphics[height=1cm]{../../../img/open-source.png}\includegraphics[height=1cm]{../../../img/gnu.png}\includegraphics[height=1cm]{../../../img/tux.png}}\vspace{-1.5em}
+\item Acesso Aberto \qquad\includegraphics[height=1cm]{../../../ppd-images/open-access.png}
+\item Dados Abertos \qquad\raisebox{-1.8em}{\includegraphics[height=1cm]{../../../ppd-images/FAIR_data_principles.jpg}}\vspace{-1em}
+\item Software Livre e Aberto \hspace{3cm}\raisebox{-1.8em}{\includegraphics[height=1cm]{../../../ppd-images/open-source.png}\includegraphics[height=1cm]{../../../ppd-images/gnu.png}\includegraphics[height=1cm]{../../../ppd-images/tux.png}}\vspace{-1.5em}
   \begin{itemize}
   \item \emph{Hardware Aberto}
   \end{itemize}
@@ -465,8 +465,8 @@ $=$ excelentes para colaborações ($\ne$ arquivamento)\hfill\null
   \item \emph{Ciência com Notebooks Abertos}
   \item \emph{Infrastrutura para Ciência Aberta}
   \end{itemize}\vspace{-1cm}
-\item \alert{Revisão por pares Aberta} \hfill\raisebox{-1em}{\includegraphics[height=2cm]{../../../img/open-review.png}}
-\item Recursos Educacionais Abertos \includegraphics[height=1cm]{../../../img/open-educational-resources.png}
+\item \alert{Revisão por pares Aberta} \hfill\raisebox{-1em}{\includegraphics[height=2cm]{../../../ppd-images/open-review.png}}
+\item Recursos Educacionais Abertos \includegraphics[height=1cm]{../../../ppd-images/open-educational-resources.png}
 \end{enumerate}
 #+end_export
 
@@ -547,7 +547,7 @@ Statistics]]/, Larry Wasserman
 - Site com *instruções* e mais *recursos*:
 
 #+latex: \bgroup\center
-#+latex: \includegraphics[height=3.4cm]{../../../img/repro_preview.png}
+#+latex: \includegraphics[height=3.4cm]{../../../ppd-images/repro_preview.png}
 
 https://phrb.github.io/PPD/lectures/org/reprodutibilidade/docs/index.html
 
@@ -576,50 +576,50 @@ cd lectures/org/reprodutibilidade/exercicio_pratico && ./build.sh -b
 \bf *Cadernos de Laboratório*
 
 #+ATTR_LaTeX: :width .7\textwidth
-file:../../../img/jupyterpreview.png
+file:../../../ppd-images/jupyterpreview.png
 
-#+LaTeX: \includegraphics[height=.7cm]{../../../img/Jupyter_logo.png}
-#+LaTeX: \includegraphics[height=.7cm]{../../../img/OrgMode_logo.png}
-#+LaTeX: \includegraphics[height=.7cm]{../../../img/RStudio_logo.png}
+#+LaTeX: \includegraphics[height=.7cm]{../../../ppd-images/Jupyter_logo.png}
+#+LaTeX: \includegraphics[height=.7cm]{../../../ppd-images/OrgMode_logo.png}
+#+LaTeX: \includegraphics[height=.7cm]{../../../ppd-images/RStudio_logo.png}
 #+ATTR_LaTeX: :width 0.65\textwidth
-file:../../../img/workflows.png
+file:../../../ppd-images/workflows.png
 
 #+LaTeX: \end{column}\begin{column}[t]{.35\linewidth}\centering
 \bf *Ambientes de Software*
 
 #+ATTR_LaTeX: :height 2cm
-file:../../../img/dependency_trees/matplotlib.pdf
+file:../../../ppd-images/dependency_trees/matplotlib.pdf
 #+ATTR_LaTeX: :height 1.1cm
-file:../../../img/platform_diversity.png
+file:../../../ppd-images/platform_diversity.png
 
-#+LaTeX: \includegraphics[height=.8cm]{../../../img/docker_logo.png}
-#+LaTeX: \includegraphics[height=.8cm]{../../../img/singularity_logo.png}
+#+LaTeX: \includegraphics[height=.8cm]{../../../ppd-images/docker_logo.png}
+#+LaTeX: \includegraphics[height=.8cm]{../../../ppd-images/singularity_logo.png}
 
-#+LaTeX: \includegraphics[height=.7cm]{../../../img/reprozip.png}
+#+LaTeX: \includegraphics[height=.7cm]{../../../ppd-images/reprozip.png}
 
-#+LaTeX: \includegraphics[height=.8cm]{../../../img/Guix_logo.png}
-#+LaTeX: \includegraphics[height=.8cm]{../../../img/nix_logo.png}
+#+LaTeX: \includegraphics[height=.8cm]{../../../ppd-images/Guix_logo.png}
+#+LaTeX: \includegraphics[height=.8cm]{../../../ppd-images/nix_logo.png}
 
 #+LaTeX: \end{column}\begin{column}[t]{.35\linewidth}\centering
 \bf *Plataformas de Compartilhamento*\bigskip
 
-#+LaTeX: \includegraphics[height=1cm]{../../../img/git_logo.png}
-#+LaTeX: \includegraphics[height=1cm]{../../../img/github_logo.png}
-#+LaTeX: \includegraphics[height=1cm]{../../../img/gitlab_logo.png}
-#+LaTeX: \includegraphics[height=1cm]{../../../img/JupyterHub_logo.png}
-#+LaTeX: \includegraphics[height=1cm]{../../../img/ArXiv-web.png}
-#+LaTeX: \includegraphics[height=1cm]{../../../img/LogoHAL.png}
-#+LaTeX: \includegraphics[height=1cm]{../../../img/Figshare-logo.png}
-#+LaTeX: \includegraphics[height=1cm]{../../../img/Zenodo-logo.jpg}
-#+LaTeX: \includegraphics[height=1cm]{../../../img/swh-logo.png}
+#+LaTeX: \includegraphics[height=1cm]{../../../ppd-images/git_logo.png}
+#+LaTeX: \includegraphics[height=1cm]{../../../ppd-images/github_logo.png}
+#+LaTeX: \includegraphics[height=1cm]{../../../ppd-images/gitlab_logo.png}
+#+LaTeX: \includegraphics[height=1cm]{../../../ppd-images/JupyterHub_logo.png}
+#+LaTeX: \includegraphics[height=1cm]{../../../ppd-images/ArXiv-web.png}
+#+LaTeX: \includegraphics[height=1cm]{../../../ppd-images/LogoHAL.png}
+#+LaTeX: \includegraphics[height=1cm]{../../../ppd-images/Figshare-logo.png}
+#+LaTeX: \includegraphics[height=1cm]{../../../ppd-images/Zenodo-logo.jpg}
+#+LaTeX: \includegraphics[height=1cm]{../../../ppd-images/swh-logo.png}
 
 #+LaTeX: \end{column}\end{columns}\bigskip
 ** É possível fazer Ciência (mais) Aberta e Reprodutível!
 #+begin_export latex
 \begin{enumerate}
-\item Acesso Aberto \qquad\includegraphics[height=1cm]{../../../img/open-access.png}
-\item Dados Abertos \qquad\raisebox{-1.8em}{\includegraphics[height=1cm]{../../../img/FAIR_data_principles.jpg}}\vspace{-1em}
-\item Software Livre e Aberto \hspace{3cm}\raisebox{-1.8em}{\includegraphics[height=1cm]{../../../img/open-source.png}\includegraphics[height=1cm]{../../../img/gnu.png}\includegraphics[height=1cm]{../../../img/tux.png}}\vspace{-1.5em}
+\item Acesso Aberto \qquad\includegraphics[height=1cm]{../../../ppd-images/open-access.png}
+\item Dados Abertos \qquad\raisebox{-1.8em}{\includegraphics[height=1cm]{../../../ppd-images/FAIR_data_principles.jpg}}\vspace{-1em}
+\item Software Livre e Aberto \hspace{3cm}\raisebox{-1.8em}{\includegraphics[height=1cm]{../../../ppd-images/open-source.png}\includegraphics[height=1cm]{../../../ppd-images/gnu.png}\includegraphics[height=1cm]{../../../ppd-images/tux.png}}\vspace{-1.5em}
   \begin{itemize}
   \item \emph{Hardware Aberto}
   \end{itemize}
@@ -628,8 +628,8 @@ file:../../../img/platform_diversity.png
   \item \emph{Ciência com Notebooks Abertos}
   \item \emph{Infrastrutura para Ciência Aberta}
   \end{itemize}\vspace{-1cm}
-\item \alert{Revisão por pares Aberta} \hfill\raisebox{-1em}{\includegraphics[height=2cm]{../../../img/open-review.png}}
-\item Recursos Educacionais Abertos \includegraphics[height=1cm]{../../../img/open-educational-resources.png}
+\item \alert{Revisão por pares Aberta} \hfill\raisebox{-1em}{\includegraphics[height=2cm]{../../../ppd-images/open-review.png}}
+\item Recursos Educacionais Abertos \includegraphics[height=1cm]{../../../ppd-images/open-educational-resources.png}
 \end{enumerate}
 #+end_export
 * Ending Title :B_ignoreheading:
