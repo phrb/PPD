@@ -1,0 +1,3 @@
+[submodule "lectures/ppd-images"]
+	path = lectures/ppd-images
+	url = git@github.com:phrb/ppd-images.git
