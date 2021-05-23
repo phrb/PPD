@@ -15,10 +15,10 @@ int main(int argc, char *argv[])  {
         b[i] = i * 2.0;
     };
 
-    #pragma omp parallel for       \
-        default(shared) private(i) \
-            schedule(static, chunk) \
-            reduction(+:result)
+    #pragma omp parallel for        \
+        default(shared) private(i)  \
+        schedule(static, chunk)     \
+        reduction(+:result)
 
         for(i = 0; i < n; i++){
             result = result + (a[i] * b[i]);
