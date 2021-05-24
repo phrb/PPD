@@ -13,6 +13,8 @@
 - [[https://man7.org/tlpi/][The Linux Programming Interface]] (Michael Kerrisk, 2010)
 - [[https://en.wikipedia.org/wiki/Microprocessor_chronology][Microprocessor Chronology]]
   - [[https://en.wikipedia.org/wiki/File:Comparison_semiconductor_process_nodes.svg][Comparing microprocessor size]]
-- [[https://hpc-tutorials.llnl.gov/posix/][POSIX Threads Programming (LLNL)]]
-  - [[https://github.com/LLNL/HPC-Tutorials][Code samples]]
+- Tutoriais
+  - [[https://hpc-tutorials.llnl.gov/posix/][POSIX Threads Programming (LLNL)]]
+  - [[https://hpc.llnl.gov/openmp-tutorial][OpenMP (LLNL)]]
+- [[https://github.com/LLNL/HPC-Tutorials][Exemplos de Código dos Tutoriais do LLNL]]
 - [[https://www.karlrupp.net/2018/02/42-years-of-microprocessor-trend-data/][Karl Rupp: 42 Years of Microprocessor Data]]

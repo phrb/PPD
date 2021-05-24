@@ -22,6 +22,8 @@
 -   [The Linux Programming Interface](https://man7.org/tlpi/) (Michael Kerrisk, 2010)
 -   [Microprocessor Chronology](https://en.wikipedia.org/wiki/Microprocessor_chronology)
     -   [Comparing microprocessor size](https://en.wikipedia.org/wiki/File:Comparison_semiconductor_process_nodes.svg)
--   [POSIX Threads Programming (LLNL)](https://hpc-tutorials.llnl.gov/posix/)
-    -   [Code samples](https://github.com/LLNL/HPC-Tutorials)
+-   Tutoriais
+    -   [POSIX Threads Programming (LLNL)](https://hpc-tutorials.llnl.gov/posix/)
+    -   [OpenMP (LLNL)](https://hpc.llnl.gov/openmp-tutorial)
+-   [Exemplos de Código dos Tutoriais do LLNL](https://github.com/LLNL/HPC-Tutorials)
 -   [Karl Rupp: 42 Years of Microprocessor Data](https://www.karlrupp.net/2018/02/42-years-of-microprocessor-trend-data/)
