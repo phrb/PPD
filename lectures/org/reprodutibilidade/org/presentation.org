@@ -75,7 +75,6 @@ See [[Emacs Setup]] below for local buffer variables
 #+LATEX_HEADER:   tabsize=2,
 #+LATEX_HEADER: }
 #+LATEX_HEADER: \renewcommand*{\UrlFont}{\ttfamily\smaller[2]\relax}
-#+LATEX_HEADER: \graphicspath{{../../ppd-images/}}
 #+LATEX_HEADER: \addtobeamertemplate{block begin}{}{\justifying}
 
 #+LATEX_HEADER: \captionsetup[figure]{labelformat=empty}
