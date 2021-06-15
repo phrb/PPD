@@ -1,3 +1,6 @@
 [submodule "lectures/ppd-images"]
 	path = lectures/ppd-images
 	url = https://github.com/phrb/ppd-images.git
+[submodule "lectures/org/stubs"]
+	path = lectures/org/stubs
+	url = git@github.com:phrb/stubs.git
