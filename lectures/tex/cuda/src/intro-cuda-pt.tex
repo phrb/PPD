@@ -53,7 +53,7 @@
 
 \renewcommand*{\UrlFont}{\ttfamily\smaller\relax}
 
-\graphicspath{{../img/}}
+\graphicspath{{../../../ppd-images/}}
 
 \title{Introdução à Programação de GPUs \\ com a Plataforma CUDA}
 \author{\footnotesize Pedro Bruel \\ {\scriptsize phrb@ime.usp.br}}
@@ -395,7 +395,7 @@
 \begin{frame}
     \frametitle{Arquitetura Pascal GP100}
     \centering
-    \includegraphics[width=.65\textwidth]{gp100_view}
+    \includegraphics[width=.65\textwidth]{gp100_view_small}
     \vfill
 
     \tiny{Imagem: \url{images.nvidia.com/content/pdf/tesla/whitepaper/pascal-architecture-whitepaper.pdf} [Acessado em 29/07/16]}
@@ -492,13 +492,13 @@
     thrust::device_vector<float> device_input2(input_lenght);
     thrust::device_vector<float> device_output(input_lenght);
     \end{lstlisting}
-    \pause
+
     \begin{lstlisting}
     thrust::copy(host_input1, host_input1 + input_lenght, device_input1.begin());
 
     thrust::copy(host_input2, host_input2 + input_lenght, device_input2.begin());
     \end{lstlisting}
-    \pause
+
     \begin{lstlisting}
     thrust::transform(device_input1.begin(), device_input1.end(), device_input2.begin(), device_output.begin(), thrust::plus<float>());
     \end{lstlisting}
@@ -524,7 +524,7 @@
     \begin{lstlisting}
     #pragma acc data copyin(input1[0:input_lenght],input2[0:input_lenght]), copyout(output[0:input_lenght])
     \end{lstlisting}
-    \pause
+
     \begin{lstlisting}
     {
         #pragma acc kernels loop independent
@@ -632,7 +632,7 @@
         C[i] = A[i] + B[i];
     }
     \end{lstlisting}
-    \pause
+
     \begin{lstlisting}
     int main() {
         ...
@@ -693,7 +693,7 @@
         C[i][j] = A[i][j] + B[i][j];
     }
     \end{lstlisting}
-    \pause
+
     \begin{lstlisting}
     int main() {
         ...
@@ -721,7 +721,7 @@
         }
     }
     \end{lstlisting}
-    \pause
+
     \begin{lstlisting}
     int main() {
         ...
@@ -843,7 +843,7 @@ Db.x * Db.y * Db.z = threadsPerBlock
     \begin{lstlisting}[basicstyle=\ttfamily\scriptsize]
     #include <cuda_runtime.h>
     \end{lstlisting}
-    \pause
+
     \begin{lstlisting}[basicstyle=\ttfamily\scriptsize]
     float *h_A = (float *) malloc(size);
     if (h_A == NULL) { ... };
@@ -853,12 +853,12 @@ Db.x * Db.y * Db.z = threadsPerBlock
     err = cudaMemcpy(d_A, h_A, size, cudaMemcpyHostToDevice);
     if (err != cudaSuccess) { ... };
     \end{lstlisting}
-    \pause
+
     \begin{lstlisting}[basicstyle=\ttfamily\scriptsize]
     int threadsPerBlock = 256;
     int blocksPerGrid = (numElements + threadsPerBlock - 1) / threadsPerBlock;
     \end{lstlisting}
-    \pause
+
     \begin{lstlisting}[basicstyle=\ttfamily\scriptsize]
     vectorAdd<<<blocksPerGrid, threadsPerBlock>>>(d_A, d_B, d_C, numElements);
 
@@ -866,7 +866,7 @@ Db.x * Db.y * Db.z = threadsPerBlock
     err = cudaDeviceSynchronize()
     if (err != cudaSuccess) { ... };
     \end{lstlisting}
-    \pause
+
     \begin{lstlisting}[basicstyle=\ttfamily\scriptsize]
     err = cudaMemcpy(h_C, d_C, size, cudaMemcpyDeviceToHost);
     err = cudaFree(d_A);
@@ -892,7 +892,7 @@ Db.x * Db.y * Db.z = threadsPerBlock
 
     err = cudaDeviceSynchronize()
     \end{lstlisting}
-    \pause
+
     \begin{lstlisting}
     if (err != cudaSuccess) {
         fprintf(stderr, "Failed to allocate device vector A (error code %s)!\n", cudaGetErrorString(err));
