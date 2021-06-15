@@ -19,12 +19,18 @@ int main(int argc, char *argv[])  {
         default(shared) private(i)  \
         schedule(static, chunk)     \
         reduction(+:result)
-
-        for(i = 0; i < n; i++){
-            result = result + (a[i] * b[i]);
-        };
+    for(i = 0; i < n; i++){
+        result = result + (a[i] * b[i]);
+    };
 
     printf("Final result = %f\n",result);
+
+    result = 0.0;
+    for(i = 0; i < n; i++){
+        result = result + (a[i] * b[i]);
+    };
+
+    printf("Final sequential result = %f\n", result);
 
     return 0;
 };

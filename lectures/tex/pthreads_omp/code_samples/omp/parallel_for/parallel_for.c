@@ -1,10 +1,10 @@
 #include <stdio.h>
 #include <omp.h>
 #define N           50
-#define CHUNKSIZE   10
+#define CHUNKSIZE   5
 
 int main(int argc, char *argv[]){
-    int i, chunk;
+    int i, chunk, tid;
     float a[N], b[N], c[N];
 
     for (i = 0; i < N; i++){
@@ -13,9 +13,15 @@ int main(int argc, char *argv[]){
     chunk = CHUNKSIZE;
 
     #pragma omp parallel for              \
-        shared(a, b, c, chunk) private(i) \
-        schedule(static, chunk)
+        shared(a, b, c, chunk) private(i, tid)      \
+        schedule(dynamic, chunk)
     for(i = N - 1; i >= 0; i--){
+        tid = omp_get_thread_num();
+
+        if (i % chunk == 0){
+            printf("Hello World from thread = %d\n", tid);
+        }
+
         c[i] = a[i] + b[i];
     };
 
