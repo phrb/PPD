@@ -10,10 +10,24 @@ programação paralela e distribuída, e tópicos semelhantes
 
 ## Conteúdo
 
+
+### Programação Paralela e Distribuída
+
 -   [Pthreads e OpenMP](https://phrb.github.io/PPD/lectures/tex/pthreads_omp/index.html)
 -   MPI
 -   CUDA
 -   LLVM
 -   Aceleradores de Hardware
+
+
+### Introdução à Programação
+
 -   História da Computação
+
+
+### Reprodutibilidade
+
 -   [Ciência Reprodutível para Experimentos Computacionais](lectures/org/reprodutibilidade/docs/index.html)
+
+
+### Linux

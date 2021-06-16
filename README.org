@@ -8,10 +8,17 @@ Este  repositório  contém  aulas  e  exemplos de  código  sobre  ferramentas 
 programação paralela e distribuída, e tópicos semelhantes
 
 ** Conteúdo
+*** Programação Paralela e Distribuída
 - [[https://phrb.github.io/PPD/lectures/tex/pthreads_omp/index.html][Pthreads e OpenMP]]
 - MPI
 - CUDA
 - LLVM
 - Aceleradores de Hardware
+
+*** Introdução à Programação
 - História da Computação
+
+*** Reprodutibilidade
 - [[file:lectures/org/reprodutibilidade/docs/index.html][Ciência Reprodutível para Experimentos Computacionais]]
+
+*** Linux
