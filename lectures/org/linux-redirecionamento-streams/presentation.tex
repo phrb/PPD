@@ -1,0 +1,129 @@
+% Created 2021-06-15 Tue 17:56
+% Intended LaTeX compiler: pdflatex
+\documentclass[10pt, compress, aspectratio=169, xcolor={table,usenames,dvipsnames}]{beamer}
+
+\usepackage{booktabs}
+\mode<beamer>{\usetheme[numbering=fraction, progressbar=none, titleformat frame=regular, titleformat title=regular, sectionpage=progressbar]{metropolis}}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{caption}
+\usepackage{graphicx}
+\usepackage[english]{babel}
+\usepackage[scale=2]{ccicons}
+\usepackage{hyperref}
+\usepackage{relsize}
+\usepackage{amsmath}
+\usepackage{bm}
+\usepackage{ragged2e}
+\usepackage{textcomp}
+\usepackage{pgfplots}
+\usepgfplotslibrary{dateplot}
+\definecolor{Base}{HTML}{191F26}
+\colorlet{Accent}{BrickRed}
+\colorlet{Highlight}{Accent!18}
+\setbeamercolor{alerted text}{fg=Accent}
+\setbeamercolor{frametitle}{fg=Accent,bg=normal text.bg}
+\setbeamercolor{normal text}{bg=black!2,fg=Base}
+\usefonttheme{professionalfonts}
+\usepackage{newpxtext}
+\usepackage{newpxmath}
+\usepackage{minted}
+\usemintedstyle{vs}
+\setminted{frame=lines,bgcolor=Black!9,fontsize=\small,baselinestretch=1.2,framesep=0.5em}
+\usepackage{DejaVuSansMono}
+\setmonofont{DejaVuSansMono}
+\renewcommand*{\UrlFont}{\ttfamily\smaller[2]\relax}
+\addtobeamertemplate{block begin}{}{\justifying}
+\captionsetup[figure]{labelformat=empty}
+\hypersetup{
+colorlinks=true,
+linkcolor={Accent},
+citecolor={Accent},
+urlcolor={Accent}
+}
+\makeatletter
+\setlength{\metropolis@titleseparator@linewidth}{1pt}
+\setlength{\metropolis@progressonsectionpage@linewidth}{2.5pt}
+\makeatother
+\usetheme{default}
+\author{\footnotesize Pedro Bruel \newline \scriptsize \emph{pedro.bruel@gmail.com}}
+\date{\scriptsize 18 de Junho de 2021}
+\title{ Redirecionamento de Entrada/Saída \\
+padrão em sistemas POSIX}
+\begin{document}
+
+\maketitle
+
+\section{Introdução}
+\label{sec:org8330c1e}
+\begin{frame}[label={sec:org9041c78}]{Objetivos da Aula e Recursos Extras}
+\end{frame}
+\begin{frame}[label={sec:orgb3d202a}]{Revisão: Algumas Chamadas POSIX para Arquivos}
+\end{frame}
+\begin{frame}[label={sec:org179061a}]{Registrando Mensagens e Monitorando Sistemas}
+\begin{columns}
+\begin{column}{0.6\columnwidth}
+\begin{block}{Motivação}
+\begin{itemize}
+\item Em sistemas POSIX,  quais são as formas de \alert{registrar  as mensagens impressas}
+por um programa durante sua execução?
+\item No Linux, quais as formas de \alert{monitorar  o uso de recursos} como CPU, memória,
+entrada/saída, e rede?
+\end{itemize}
+\end{block}
+\end{column}
+\begin{column}{0.4\columnwidth}
+\begin{center}
+  \includegraphics[height=1.3cm]{../../ppd-images/document_icon.png}
+  \includegraphics[height=1.3cm]{../../ppd-images/document_icon_2.png}
+
+  \vspace{1em}
+
+  \includegraphics[height=1.3cm]{../../ppd-images/monitoring_icon.png}
+\end{center}
+\end{column}
+\end{columns}
+\end{frame}
+\begin{frame}[label={sec:orgab23e77}]{Descritores de Arquivos em Processos POSIX}
+\begin{center}
+\includegraphics[width=0.68\textwidth]{../../ppd-images/file_descriptors_kerrisk.pdf}
+\end{center}
+
+\begin{center}
+\scriptsize
+The Linux Programming API, Michael Kerrisk, pág. 95
+\end{center}
+\end{frame}
+
+\begin{frame}[label={sec:org3263c57}]{Streams Padrão em Processos POSIX}
+\begin{center}
+\small
+\begin{tabular}{clll}
+\toprule
+\textbf{Descritor} & \textbf{Propósito} & \textbf{Nome POSIX} &  \textbf{Stream \textit{stdio}}\\
+\midrule
+0 & Entrada padrão & STDIN\_FILENO & \emph{stdin}\\
+1 & Saída padrão & STDOUT\_FILENO & \emph{stdout}\\
+2 & Erro padrão & STDERR\_FILENO & \emph{stderr}\\
+\bottomrule
+\end{tabular}
+\end{center}
+\end{frame}
+
+\begin{frame}[label={sec:orgac3b82b},fragile]{Exemplos em \emph{bash}}
+ \begin{itemize}
+\item \url{https://www.gnu.org/software/bash/manual/html\_node/Redirections.html}
+\end{itemize}
+
+\begin{figure}
+\begin{minipage}{0.6\textwidth}
+\begin{minted}[]{bash}
+head < /proc/cpuinfo > cpu_info.log
+\end{minted}
+\end{minipage}
+\end{figure}
+\end{frame}
+
+\maketitle
+\end{document}

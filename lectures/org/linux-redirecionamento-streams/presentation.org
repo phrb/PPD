@@ -1,0 +1,171 @@
+#+STARTUP: beamer overview indent inlineimages logdrawer
+#+TITLE: @@latex: Redirecionamento de Entrada/Saída \\
+#+TITLE: padrão em sistemas POSIX@@
+#+AUTHOR:    \footnotesize Pedro Bruel \newline \scriptsize \emph{pedro.bruel@gmail.com}
+#+DATE:      \scriptsize 18 de Junho de 2021
+#+DESCRIPTION:
+#+KEYWORDS:
+#+LANGUAGE:  en
+#+OPTIONS:   H:2 num:t toc:nil @:t \n:nil ::t |:t ^:t -:t f:t *:t <:t
+#+OPTIONS:   tex:t latex:t skip:nil d:nil todo:t pri:nil tags:not-in-toc
+#+EXPORT_SELECT_TAGS: export
+#+EXPORT_EXCLUDE_TAGS: noexport
+#+LINK_UP:
+#+LINK_HOME:
+
+* LaTeX Setup                                      :B_ignoreheading:noexport:
+:PROPERTIES:
+:BEAMER_env: ignoreheading
+:END:
+
+See [[Emacs Setup]] below for local buffer variables
+
+** LaTeX Configuration
+:latex_header:
+#+LATEX_CLASS: beamer
+#+LATEX_CLASS_OPTIONS: [10pt, compress, aspectratio=169, xcolor={table,usenames,dvipsnames}]
+#+LATEX_HEADER: \mode<beamer>{\usetheme[numbering=fraction, progressbar=none, titleformat frame=regular, titleformat title=regular, sectionpage=progressbar]{metropolis}}
+
+#+COLUMNS: %40ITEM %10BEAMER_env(Env) %9BEAMER_envargs(Env Args) %4BEAMER_col(Col) %10BEAMER_extra(Extra)
+
+#+LATEX_HEADER: \usepackage{booktabs}
+#+LATEX_HEADER: \usepackage{array}
+#+LATEX_HEADER: \usepackage{multirow}
+#+LATEX_HEADER: \usepackage{caption}
+#+LATEX_HEADER: \usepackage{graphicx}
+#+LATEX_HEADER: \usepackage[english]{babel}
+#+LATEX_HEADER: \usepackage[scale=2]{ccicons}
+#+LATEX_HEADER: \usepackage{hyperref}
+#+LATEX_HEADER: \usepackage{relsize}
+#+LATEX_HEADER: \usepackage{amsmath}
+#+LATEX_HEADER: \usepackage{bm}
+#+LATEX_HEADER: \usepackage{ragged2e}
+#+LATEX_HEADER: \usepackage{textcomp}
+#+LATEX_HEADER: \usepackage{pgfplots}
+#+LATEX_HEADER: \usepgfplotslibrary{dateplot}
+
+#+LATEX_HEADER: \definecolor{Base}{HTML}{191F26}
+
+# #+LATEX_HEADER: \definecolor{Accent}{HTML}{b10000}
+# #+LATEX_HEADER: \colorlet{Accent}{PineGreen}
+# #+LATEX_HEADER: \colorlet{Accent}{OliveGreen!85!Black}
+#+LATEX_HEADER: \colorlet{Accent}{BrickRed}
+
+#+LATEX_HEADER: \colorlet{Highlight}{Accent!18}
+
+#+LATEX_HEADER: \setbeamercolor{alerted text}{fg=Accent}
+#+LATEX_HEADER: \setbeamercolor{frametitle}{fg=Accent,bg=normal text.bg}
+#+LATEX_HEADER: \setbeamercolor{normal text}{bg=black!2,fg=Base}
+
+#+LATEX_HEADER: \usefonttheme{professionalfonts}
+#+LATEX_HEADER: \usepackage{newpxtext}
+#+LATEX_HEADER: \usepackage{newpxmath}
+
+#+LATEX_HEADER: \usepackage{minted}
+#+LATEX_HEADER: \usemintedstyle{vs}
+#+LATEX_HEADER: \setminted{frame=lines,bgcolor=Black!9,fontsize=\small,baselinestretch=1.2,framesep=0.5em}
+
+#+LATEX_HEADER: \usepackage{DejaVuSansMono}
+#+LATEX_HEADER: \setmonofont{DejaVuSansMono}
+#+LATEX_HEADER: \renewcommand*{\UrlFont}{\ttfamily\smaller[2]\relax}
+#+LATEX_HEADER: \addtobeamertemplate{block begin}{}{\justifying}
+
+#+LATEX_HEADER: \captionsetup[figure]{labelformat=empty}
+
+#+LATEX_HEADER: \hypersetup{
+#+LATEX_HEADER:     colorlinks=true,
+#+LATEX_HEADER:     linkcolor={Accent},
+#+LATEX_HEADER:     citecolor={Accent},
+#+LATEX_HEADER:     urlcolor={Accent}
+#+LATEX_HEADER: }
+
+#+LATEX_HEADER: \makeatletter
+#+LATEX_HEADER: \setlength{\metropolis@titleseparator@linewidth}{1pt}
+#+LATEX_HEADER: \setlength{\metropolis@progressonsectionpage@linewidth}{2.5pt}
+# #+LATEX_HEADER: \setlength{\metropolis@progressinheadfoot@linewidth}{2pt}
+#+LATEX_HEADER: \makeatother
+:end:
+
+* Introdução
+** Objetivos da Aula e Recursos Extras
+** Revisão: Algumas Chamadas POSIX para Arquivos
+** Registrando Mensagens e Monitorando Sistemas
+*** Motivação                                               :B_block:BMCOL:
+:PROPERTIES:
+:BEAMER_env: block
+:BEAMER_col: 0.6
+:END:
+- Em sistemas POSIX,  quais são as formas de *registrar  as mensagens impressas*
+  por um programa durante sua execução?
+- No Linux, quais as formas de *monitorar  o uso de recursos* como CPU, memória,
+  entrada/saída, e rede?
+*** Images                                                          :BMCOL:
+:PROPERTIES:
+:BEAMER_col: 0.4
+:END:
+
+#+begin_export latex
+\begin{center}
+  \includegraphics[height=1.3cm]{../../ppd-images/document_icon.png}
+  \includegraphics[height=1.3cm]{../../ppd-images/document_icon_2.png}
+
+  \vspace{1em}
+
+  \includegraphics[height=1.3cm]{../../ppd-images/monitoring_icon.png}
+\end{center}
+#+end_export
+** Descritores de Arquivos em Processos POSIX
+#+ATTR_LATEX: :width 0.68\textwidth
+[[file:../../ppd-images/file_descriptors_kerrisk.pdf]]
+
+#+begin_export latex
+\begin{center}
+\scriptsize
+The Linux Programming API, Michael Kerrisk, pág. 95
+\end{center}
+#+end_export
+
+** Streams Padrão em Processos POSIX
+#+ATTR_LATEX: :booktabs true :align clll :font \small
+| \textbf{Descritor} | \textbf{Propósito} | \textbf{Nome POSIX}  | @@latex: \textbf{Stream \textit{stdio}}@@ |
+|--------------------+--------------------+----------------------+-------------------------------------------|
+|                  0 | Entrada padrão     | STDIN\under{}FILENO  | /stdin/                                   |
+|                  1 | Saída padrão       | STDOUT\under{}FILENO | /stdout/                                  |
+|                  2 | Erro padrão        | STDERR\under{}FILENO | /stderr/                                  |
+
+** Exemplos em /bash/
+
+- [[https://www.gnu.org/software/bash/manual/html_node/Redirections.html]]
+
+#+begin_export latex
+\begin{figure}
+\begin{minipage}{0.6\textwidth}
+#+end_export
+#+begin_SRC bash :exports code
+head < /proc/cpuinfo > cpu_info.log
+#+end_SRC
+#+begin_export latex
+\end{minipage}
+\end{figure}
+#+end_export
+
+* Ending Title :B_ignoreheading:
+:PROPERTIES:
+:BEAMER_env: ignoreheading
+:END:
+#+LATEX: \maketitle
+
+* Emacs Setup                                      :noexport:B_ignoreheading:
+:PROPERTIES:
+:BEAMER_env: ignoreheading
+:END:
+See [[LaTeX Setup]] above for the beamer configuration
+
+** Use XeLaTeX
+If you  accept this definition  when loading the  buffer, this variable  will be
+modified  locally to  the buffer.  This allows  using XeLaTeX  for exporting  to
+beamer pdf.
+
+# Local Variables:
+# eval: (setq-local org-latex-pdf-process (list "latexmk -xelatex -shell-escape %f"))
+# End:
