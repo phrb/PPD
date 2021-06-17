@@ -7,7 +7,7 @@
 ** Conteúdo
 *** [[https://github.com/phrb/PPD/raw/main/lectures/org/linux-redirecionamento-streams/presentation.pdf][Slides]]
 *** Exemplos de Código
-    - [[file:lectures/org/linux-redirecionamento-streams/src/bash_example/bash_example.html][Exemplos em /bash/]]
-    - [[file:lectures/org/linux-redirecionamento-streams/src/pipe_example/pipe_example.html][Exemplo com /pipe/ em /C/]]
+    - [[file:lectures/org/linux-redirecionamento-streams/src/bash_example/index.html][Exemplos em /bash/]]
+    - [[file:lectures/org/linux-redirecionamento-streams/src/pipe_example/index.html][Exemplo com /pipe/ em /C/]]
 *** Recursos
 - [[https://man7.org/tlpi/][The Linux Programming Interface]] (Michael Kerrisk, 2010)
