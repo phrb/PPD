@@ -1,12 +1,12 @@
 #+STARTUP: beamer overview indent inlineimages logdrawer
-#+TITLE: @@latex: Redirecionamento de Entrada/Saída \\
-#+TITLE: padrão em sistemas POSIX@@
+#+TITLE: @@latex: Redirecionamento de Streams \\
+#+TITLE: Padrão em Sistemas POSIX@@
 #+AUTHOR:    \footnotesize Pedro Bruel \newline \scriptsize \emph{pedro.bruel@gmail.com}
 #+DATE:      \scriptsize 18 de Junho de 2021
 #+DESCRIPTION:
 #+KEYWORDS:
 #+LANGUAGE:  en
-#+OPTIONS:   H:2 num:t toc:nil @:t \n:nil ::t |:t ^:t -:t f:t *:t <:t
+#+OPTIONS:   H:2 num:t toc:nil @:t \n:nil ::t |:t -:t f:t *:t <:t
 #+OPTIONS:   tex:t latex:t skip:nil d:nil todo:t pri:nil tags:not-in-toc
 #+EXPORT_SELECT_TAGS: export
 #+EXPORT_EXCLUDE_TAGS: noexport
@@ -50,7 +50,8 @@ See [[Emacs Setup]] below for local buffer variables
 # #+LATEX_HEADER: \colorlet{Accent}{PineGreen}
 # #+LATEX_HEADER: \colorlet{Accent}{OliveGreen!85!Black}
 #+LATEX_HEADER: \colorlet{Accent}{BrickRed}
-
+#+LATEX_HEADER: \colorlet{CodeBg}{Gray!20}
+#+LATEX_HEADER: \colorlet{CodeHighBg}{Accent!10}
 #+LATEX_HEADER: \colorlet{Highlight}{Accent!18}
 
 #+LATEX_HEADER: \setbeamercolor{alerted text}{fg=Accent}
@@ -63,7 +64,26 @@ See [[Emacs Setup]] below for local buffer variables
 
 #+LATEX_HEADER: \usepackage{minted}
 #+LATEX_HEADER: \usemintedstyle{vs}
-#+LATEX_HEADER: \setminted{frame=lines,bgcolor=Black!9,fontsize=\small,baselinestretch=1.2,framesep=0.5em}
+#+LATEX_HEADER: \setminted{
+#+LATEX_HEADER:            frame=none,
+#+LATEX_HEADER:            bgcolor=CodeBg,
+#+LATEX_HEADER:            fontsize=\footnotesize,
+#+LATEX_HEADER:            baselinestretch=1.2,
+#+LATEX_HEADER:            framesep=0.6em,
+#+LATEX_HEADER:            tabsize=2,
+#+LATEX_HEADER:            breaklines
+#+LATEX_HEADER: }
+
+#+LATEX_HEADER: \AtBeginEnvironment{snugshade*}{\vspace{-\FrameSep}}
+#+LATEX_HEADER: \AfterEndEnvironment{snugshade*}{\vspace{-\FrameSep}}
+
+#+LATEX_HEADER: \usepackage{fancyvrb}
+#+LATEX_HEADER: \usepackage{fvextra}
+#+LATEX_HEADER: \RecustomVerbatimEnvironment{verbatim}{Verbatim}{fontsize=\footnotesize,
+#+LATEX_HEADER:                                                  breaklines=true,
+#+LATEX_HEADER:                                                  frame=single,
+#+LATEX_HEADER:                                                  framerule=1mm,
+#+LATEX_HEADER:                                                  rulecolor=CodeBg}
 
 #+LATEX_HEADER: \usepackage{DejaVuSansMono}
 #+LATEX_HEADER: \setmonofont{DejaVuSansMono}
@@ -87,10 +107,57 @@ See [[Emacs Setup]] below for local buffer variables
 :end:
 
 * Introdução
-** Objetivos da Aula e Recursos Extras
-** Revisão: Algumas Chamadas POSIX para Arquivos
+** Conteúdo e Objetivos de Aprendizagem
+*** Tópicos                                                 :B_block:BMCOL:
+:PROPERTIES:
+:BEAMER_env: block
+:BEAMER_col: 0.65
+:END:
+- *Streams*, ou *fluxos* padrão em Processos POSIX,
+  chamadas de sistema /*dup*/ e /*dup2*/
+
+**** Habilidades                                                 :B_block:
+:PROPERTIES:
+:BEAMER_env: block
+:END:
+
+- Escrever scripts em *bash* e programas  em *C* que *redirecionem* os *streams*
+  de *Entrada/Saída* de programas
+
+**** Conhecimentos                                               :B_block:
+:PROPERTIES:
+:BEAMER_env: block
+:END:
+
+- Compreender o redirecionamento de streams  de Entrada/Saída como a *duplicação
+  de descritores de arquivo* em processos POSIX
+
+*** Image                                                           :BMCOL:
+:PROPERTIES:
+:BEAMER_col: 0.35
+:END:
+
+#+ATTR_LATEX: :width 0.7\textwidth
+[[file:../../ppd-images/tux_badge.png]]
+** Recursos Extras
+*** The Linux API                                           :B_block:BMCOL:
+:PROPERTIES:
+:BEAMER_env: block
+:BEAMER_col: 0.5
+:END:
+
+#+ATTR_LATEX: :width 0.5\columnwidth
+[[file:../../ppd-images/kerrisk_api.png]]
+
+- Capítulos 4, 5, e 44
+
+*** Site da Aula                                            :B_block:BMCOL:
+:PROPERTIES:
+:BEAMER_env: block
+:BEAMER_col: 0.5
+:END:
 ** Registrando Mensagens e Monitorando Sistemas
-*** Motivação                                               :B_block:BMCOL:
+*** Problemas                                               :B_block:BMCOL:
 :PROPERTIES:
 :BEAMER_env: block
 :BEAMER_col: 0.6
@@ -114,7 +181,326 @@ See [[Emacs Setup]] below for local buffer variables
   \includegraphics[height=1.3cm]{../../ppd-images/monitoring_icon.png}
 \end{center}
 #+end_export
-** Descritores de Arquivos em Processos POSIX
+** Registrando Mensagens e Monitorando Sistemas
+:PROPERTIES:
+:BEAMER_opt: t,fragile
+:END:
+*** Registro de Mensagens                                   :B_block:BMCOL:
+:PROPERTIES:
+:BEAMER_col: 0.5
+:BEAMER_env: block
+:END:
+
+#+begin_export latex
+{\rmfamily
+#+end_export
+
+-
+
+#+begin_export latex
+}
+#+end_export
+*** Monitoramento de Recursos                               :B_block:BMCOL:
+:PROPERTIES:
+:BEAMER_col: 0.5
+:BEAMER_env: block
+:END:
+
+#+begin_export latex
+{\rmfamily
+#+end_export
+
+-
+
+#+begin_export latex
+}
+#+end_export
+
+* Redirecionamento de Entrada/Saída em /bash/
+** Streams Padrão em Processos POSIX
+- *Streams*, ou *fluxos*, são *canais de comunicação* indexados por *descritores
+  de arquivo*
+- Todo processo POSIX abre os seguintes *streams* por padrão:
+#+ATTR_LATEX: :booktabs true :align clll :font \small
+| \textbf{Descritor} | \textbf{Propósito} | \textbf{Nome POSIX}  | @@latex: \textbf{Stream \textit{stdio}}@@ |
+|--------------------+--------------------+----------------------+-------------------------------------------|
+|                  0 | *Entrada* padrão   | STDIN\under{}FILENO  | /stdin/                                   |
+|                  1 | *Saída* padrão     | STDOUT\under{}FILENO | /stdout/                                  |
+|                  2 | *Erro* padrão      | STDERR\under{}FILENO | /stderr/                                  |
+** Usando Arquivos de /Log/: Redirecionamento de Saída e Erros
+#+begin_export latex
+\begin{figure}
+\begin{minipage}{.8\textwidth}
+#+end_export
+
+#+begin_SRC bash :exports both
+date > existe.txt && cat existe.txt
+#+end_SRC
+
+#+RESULTS:
+: Wed Jun 16 05:38:58 PM -03 2021
+
+\vspace{-0.4em}
+\pause
+
+- Redirecionando *erro* e *saída* para arquivos diferentes:
+
+\vspace{0.3em}
+
+#+begin_SRC bash :exports both
+cat existe.txt não-existe.txt 1> saída.log 2> erros.log
+#+end_SRC
+
+#+RESULTS:
+
+\vspace{0.3em}
+\pause
+
+- Verificando os *logs*:
+
+\vspace{0.3em}
+
+#+begin_SRC bash :exports both
+cat saída.log
+#+end_SRC
+
+#+RESULTS:
+: Wed Jun 16 05:38:58 PM -03 2021
+
+\pause
+
+#+begin_SRC bash :exports both
+cat erros.log
+#+end_SRC
+
+#+RESULTS:
+: cat: não-existe.txt: No such file or directory
+
+#+begin_export latex
+\end{minipage}
+\end{figure}
+#+end_export
+
+#+begin_SRC bash :exports none
+rm *.log *.txt
+#+end_SRC
+
+#+RESULTS:
+
+** Monitorando o Linux: Redirecionamento de Saída
+*** Monitorando o Consumo de Memória
+#+begin_export latex
+\begin{figure}
+\begin{minipage}{\textwidth}
+#+end_export
+#+begin_SRC bash :exports code
+free -h > mem.log && cat mem.log
+#+end_SRC
+
+#+RESULTS:
+: total        used        free      shared  buff/cache   available
+: Mem:            31Gi       7.2Gi       1.1Gi       1.4Gi        22Gi        22Gi
+: Swap:             0B          0B          0B
+
+\pause
+
+#+begin_verbatim
+               total        used        free      shared  buff/cache   available
+Mem:            31Gi       7.2Gi       1.1Gi       1.4Gi        22Gi        22Gi
+Swap:             0B          0B          0B
+#+end_verbatim
+
+\pause
+
+#+begin_SRC bash :exports code
+cat /proc/meminfo > meminfo.log
+#+end_SRC
+
+#+RESULTS:
+
+#+begin_export latex
+\end{minipage}
+\end{figure}
+#+end_export
+
+** Monitorando o Linux: Redirecionamento de Entrada
+*** Monitorando o Clock da CPU
+#+begin_export latex
+\begin{figure}
+\begin{minipage}{0.9\textwidth}
+#+end_export
+#+begin_SRC bash :exports code
+grep "cpu MHz" < /proc/cpuinfo > cpu_clock.log && cat cpu_clock.log
+#+end_SRC
+
+#+RESULTS:
+: cpu MHz		: 3000.000
+: cpu MHz		: 1746.784
+: cpu MHz		: 3000.000
+: cpu MHz		: 3000.000
+: cpu MHz		: 3000.000
+: cpu MHz		: 3000.000
+: cpu MHz		: 900.006
+: cpu MHz		: 900.001
+
+\pause
+
+#+begin_SRC bash :exports results
+cat cpu_clock.log | sed "s/\t/    /g"
+#+end_SRC
+#+RESULTS:
+: cpu MHz        : 3000.000
+: cpu MHz        : 1746.784
+: cpu MHz        : 3000.000
+: cpu MHz        : 3000.000
+: cpu MHz        : 3000.000
+: cpu MHz        : 3000.000
+: cpu MHz        : 900.006
+: cpu MHz        : 900.001
+
+#+begin_export latex
+\end{minipage}
+\end{figure}
+#+end_export
+
+\pause
+
+*** Mais Exemplos
+- [[https://www.gnu.org/software/bash/manual/html_node/Redirections.html]]
+
+** Exercício: Script de Redirecionamento
+Escreva um *script /bash/* que:
+
+1. Receba *3 argumentos*:
+   - =$1=: Um programa e seus argumentos
+   - =$2=: Um arquivo de entrada
+   - =$3=: Um arquivo de saída
+2.  *Execute* o programa =$1= com stream de *Entrada* =$2=, e redirecione *Saída
+   e Erro* para =$3=
+
+
+\pause
+
+#+begin_export latex
+\begin{figure}
+\begin{minipage}{.43\textwidth}
+#+end_export
+#+begin_SRC bash :exports code :tangle ./src/bash_example/log.sh
+#!/usr/bin/bash
+/usr/bin/bash -c "$1 < $2 &> $3"
+#+end_SRC
+
+#+begin_export latex
+\end{minipage}
+\end{figure}
+#+end_export
+
+** Exercício: Script de Redirecionamento
+#+begin_export latex
+\begin{figure}
+\begin{minipage}{\textwidth}
+#+end_export
+#+begin_SRC bash :exports code :tangle ./src/bash_example/log.sh
+#!/usr/bin/bash
+/usr/bin/bash -c "$1 < $2 &> $3"
+#+end_SRC
+
+#+begin_SRC bash :exports code
+./src/bash_example/log.sh 'grep "cpu MHz"' /proc/cpuinfo out.log && cat out.log
+#+end_SRC
+
+#+RESULTS:
+: cpu MHz		: 1303.327
+: cpu MHz		: 1682.174
+: cpu MHz		: 3000.000
+: cpu MHz		: 3000.000
+: cpu MHz		: 3000.000
+: cpu MHz		: 3000.000
+: cpu MHz		: 3000.000
+: cpu MHz		: 3000.000
+
+#+begin_SRC bash :exports results
+cat out.log | sed "s/\t/    /g"
+#+end_SRC
+
+#+RESULTS:
+: cpu MHz        : 1303.327
+: cpu MHz        : 1682.174
+: cpu MHz        : 3000.000
+: cpu MHz        : 3000.000
+: cpu MHz        : 3000.000
+: cpu MHz        : 3000.000
+: cpu MHz        : 3000.000
+: cpu MHz        : 3000.000
+
+#+begin_export latex
+\end{minipage}
+\end{figure}
+#+end_export
+
+** Síntese: Redirecionamento em Bash
+:PROPERTIES:
+:BEAMER_OPT: fragile
+:END:
+
+#+begin_export latex
+\begin{figure}
+\small
+  \begin{tabular}{p{0.2\textwidth}p{0.52\textwidth}}
+    \toprule
+    \textbf{Sintaxe} & \textbf{Efeito} \\
+    \midrule
+    \begin{minipage}[t]{0.3\textwidth}
+\texttt{[n]> arquivo} \\
+\texttt{[n]>> arquivo}
+    \end{minipage} & Redireciona o descritor \texttt{n} para \texttt{arquivo},
+    sobreescrevendo (\texttt{>}) ou adicionando (\texttt{>>}) \\
+    \addlinespace[1em]
+    \begin{minipage}[t]{0.3\textwidth}
+\texttt{\&> arquivo}
+    \end{minipage}
+    & Redireciona \alert{Erro} e \alert{Saída} Padrão para \texttt{arquivo} \\
+    \addlinespace[1em]
+    \begin{minipage}[c]{0.3\textwidth}
+\texttt{> arquivo 2>\&1}
+    \end{minipage}
+    & Redireciona \alert{Saída Padrão} (\texttt{fd=1}) para \texttt{arquivo},
+    e rediciona \alert{Erro Padrão} (\texttt{fd=2}) para \alert{Saída Padrão} \\
+    \addlinespace[1em]
+    \begin{minipage}[c]{0.3\textwidth}
+\texttt{< arquivo}
+    \end{minipage}
+    & Redireciona \alert{Entrada Padrão} para ler de \texttt{arquivo} \\
+    \addlinespace[0.55em]\bottomrule
+  \end{tabular}
+\end{figure}
+#+end_export
+
+** Conectando Streams de Entrada/Saída
+*** Problemas                                               :B_block:BMCOL:
+:PROPERTIES:
+:BEAMER_env: block
+:BEAMER_col: 0.6
+:END:
+- Como *conectar os streams* de entrada/saída de dois processos através do bash?
+- E através de um *programa em C*?
+*** Images                                                          :BMCOL:
+:PROPERTIES:
+:BEAMER_col: 0.4
+:END:
+
+#+begin_export latex
+\begin{center}
+  \includegraphics[height=1.3cm]{../../ppd-images/chain_icon.png}
+  \includegraphics[height=1.3cm]{../../ppd-images/pipe_icon.png}
+
+  \vspace{1em}
+
+  \includegraphics[height=1.3cm]{../../ppd-images/brick_icon.png}
+\end{center}
+#+end_export
+* Duplicando Descritores de Arquivo com Chamadas de Sistema
+** Descritores de Arquivo em Processos POSIX
 #+ATTR_LATEX: :width 0.68\textwidth
 [[file:../../ppd-images/file_descriptors_kerrisk.pdf]]
 
@@ -125,30 +511,195 @@ The Linux Programming API, Michael Kerrisk, pág. 95
 \end{center}
 #+end_export
 
-** Streams Padrão em Processos POSIX
-#+ATTR_LATEX: :booktabs true :align clll :font \small
-| \textbf{Descritor} | \textbf{Propósito} | \textbf{Nome POSIX}  | @@latex: \textbf{Stream \textit{stdio}}@@ |
-|--------------------+--------------------+----------------------+-------------------------------------------|
-|                  0 | Entrada padrão     | STDIN\under{}FILENO  | /stdin/                                   |
-|                  1 | Saída padrão       | STDOUT\under{}FILENO | /stdout/                                  |
-|                  2 | Erro padrão        | STDERR\under{}FILENO | /stderr/                                  |
-
-** Exemplos em /bash/
-
-- [[https://www.gnu.org/software/bash/manual/html_node/Redirections.html]]
-
+** Algumas Chamadas POSIX
 #+begin_export latex
 \begin{figure}
 \begin{minipage}{0.6\textwidth}
 #+end_export
-#+begin_SRC bash :exports code
-head < /proc/cpuinfo > cpu_info.log
-#+end_SRC
+
+#+ATTR_LATEX: :options fontsize=\scriptsize
+#+begin_src C :exports code
+#include <sys/stat.h>
+#include <fcntl.h>
+#include <unistd.h>
+
+int open(const char *pathname, int flags, ...);
+int close(int fd);
+ssize_t read(int fd, void *buffer, size_t count);
+ssize_t write(int fd, void *buffer, size_t count);
+
+pid_t fork(void);
+int execlp(const char *filename, const char *arg, ...);
+#+end_src
+
+#+latex: \pause
+#+latex: \vspace{0.3em}
+
+#+ATTR_LATEX: :options fontsize=\scriptsize,bgcolor=CodeHighBg
+#+begin_src C :exports code
+int dup(int oldfd);
+int dup2(int oldfd, int newfd);
+int pipe(int filedes[2]);
+#+end_src
+
 #+begin_export latex
 \end{minipage}
 \end{figure}
 #+end_export
 
+** Chamadas /dup/ e /dup2/
+=int dup(int oldfd);=
+- *Duplica* o descritor de arquivo =oldfd=, usando o menor descritor disponível
+
+=int dup2(int oldfd, int newfd);=
+- *Duplica* =oldfd= usando =newfd=, fecha =newfd= se necessário
+
+#+begin_export latex
+\begin{figure}
+\begin{minipage}{.95\textwidth}
+#+end_export
+
+#+ATTR_LATEX: :options fontsize=\scriptsize
+#+begin_SRC bash :exports code
+man dup | grep "NAME" -A 10
+#+end_SRC
+
+#+RESULTS:
+#+begin_example
+NAME
+       dup, dup2 — duplicate an open file descriptor
+
+SYNOPSIS
+include <unistd.h>
+
+       int dup(int fildes);
+       int dup2(int fildes, int fildes2);
+
+DESCRIPTION
+       The  dup()  function provides an alternative interface to the service provided by fc‐
+#+end_example
+
+#+begin_export latex
+\begin{verbatim}[fontsize=\scriptsize]
+NAME
+  dup, dup2 — duplicate an open file descriptor
+
+SYNOPSIS
+  include <unistd.h>
+  int dup(int fildes);
+  int dup2(int fildes, int fildes2);
+
+DESCRIPTION
+  The  dup()  function provides an alternative interface to the service provided [...]
+\end{verbatim}
+
+\end{minipage}
+\end{figure}
+#+end_export
+
+** Chamada /pipe/
+
+=int pipe(int filedes[2]);=
+- Abre  um  canal  de  comunicação *entre  processos*,  usando  *descritores  de
+  arquivo*
+
+#+begin_export latex
+\begin{figure}
+\begin{minipage}{.95\textwidth}
+#+end_export
+
+#+ATTR_LATEX: :options fontsize=\scriptsize
+#+begin_SRC bash :exports code
+man pipe | grep "NAME" -A 10
+#+end_SRC
+
+#+RESULTS:
+#+begin_example
+NAME
+       pipe — create an interprocess channel
+
+SYNOPSIS
+include <unistd.h>
+
+       int pipe(int fildes[2]);
+
+DESCRIPTION
+       The pipe() function shall create a pipe and place two file descriptors, one each into
+       the arguments fildes[0] and fildes[1], that refer to the open file  descriptions  for
+#+end_example
+
+#+begin_export latex
+\begin{verbatim}[fontsize=\scriptsize]
+NAME
+  pipe — create an interprocess channel
+
+SYNOPSIS
+  include <unistd.h>
+  int pipe(int fildes[2]);
+
+DESCRIPTION
+  The pipe() function shall create a pipe and place two file descriptors, one each into
+  the arguments fildes[0] and fildes[1], that refer to the open file  descriptions [..]
+\end{verbatim}
+
+\end{minipage}
+\end{figure}
+#+end_export
+
+** Exercício: Redirecionamento em C
+*** Usando um /pipe/ para Conectar Filtros                  :B_block:BMCOL:
+:PROPERTIES:
+:BEAMER_env: block
+:BEAMER_col: 0.5
+:END:
+#+ATTR_LATEX: :width \textwidth
+[[file:../../ppd-images/pipe_filters.pdf]]
+
+#+begin_export latex
+\begin{center}
+\scriptsize
+The Linux Programming API, Michael Kerrisk, cap. 44, pág. 890
+\end{center}
+#+end_export
+
+*** Exemplo em /C/                                          :B_block:BMCOL:
+:PROPERTIES:
+:BEAMER_env: block
+:BEAMER_col: 0.3
+:END:
+
+#+begin_export latex
+\begin{figure}
+\begin{minipage}{\textwidth}
+#+end_export
+#+begin_SRC bash
+tree src/pipe_example
+#+end_SRC
+
+#+RESULTS:
+: src/pipe_example
+: ├── Makefile
+: ├── pipe_example.md
+: ├── pipe_example.org
+: └── pipe_ls_wc.c
+:
+: 0 directories, 4 files
+
+#+begin_export latex
+\end{minipage}
+\end{figure}
+#+end_export
+
+*** Código Fonte                                                 :B_block:
+:PROPERTIES:
+:BEAMER_env: block
+:END:
+
+- The Linux Programming API, Michael Kerrisk, cap. 44, pág. 890
+- https://man7.org/tlpi/code/online/dist/pipes/pipe_ls_wc.c.html
+
+** Síntese: Duplicando Descritores de Arquivo
+* Revisitando os Objetivos de Aprendizagem
 * Ending Title :B_ignoreheading:
 :PROPERTIES:
 :BEAMER_env: ignoreheading
@@ -168,4 +719,6 @@ beamer pdf.
 
 # Local Variables:
 # eval: (setq-local org-latex-pdf-process (list "latexmk -xelatex -shell-escape %f"))
+# eval: (add-to-list 'org-babel-default-header-args:bash
+#                    '(:exports . "both"))
 # End:
