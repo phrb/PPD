@@ -13,8 +13,8 @@
 
 ### Exemplos de Código
 
--   [Exemplos em *bash*](lectures/org/linux-redirecionamento-streams/src/bash_example/index.html)
--   [Exemplo com *pipe* em *C*](lectures/org/linux-redirecionamento-streams/src/pipe_example/index.html)
+-   [Exemplos em *bash*](src/bash_example/index.html)
+-   [Exemplo com *pipe* em *C*](src/pipe_example/index.html)
 
 
 ### Recursos
