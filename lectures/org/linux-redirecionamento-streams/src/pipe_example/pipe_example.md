@@ -7,6 +7,8 @@
 
 ## Conteúdo
 
+-   [Conectando
+    Filtros com *pipes*](https://github.com/phrb/PPD/tree/main/lectures/org/linux-redirecionamento-streams/src/pipe_example)
 -   Exemplo              de             código              no             livro
     [The    Linux    Programming
     Interface](https://man7.org/tlpi/code/online/index.html)
