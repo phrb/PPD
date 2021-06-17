@@ -22,3 +22,4 @@ programação paralela e distribuída, e tópicos semelhantes
 - [[file:lectures/org/reprodutibilidade/docs/index.html][Ciência Reprodutível para Experimentos Computacionais]]
 
 *** Linux
+- [[file:lectures/org/linux-redirecionamento-streams/index.html][Redirecionamento de Streams Padrão em Sistemas POSIX]]

@@ -31,3 +31,5 @@ programação paralela e distribuída, e tópicos semelhantes
 
 
 ### Linux
+
+-   [Redirecionamento de Streams Padrão em Sistemas POSIX](lectures/org/linux-redirecionamento-streams/index.html)
