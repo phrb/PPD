@@ -8,13 +8,10 @@
 ## Conteúdo
 
 
-### [Slides](https://github.com/phrb/PPD/raw/main/lectures/tex/pthreads_omp/src/pthreads-openmp.pdf)
+### [Slides](https://github.com/phrb/PPD/raw/main/lectures/org/linux-redirecionamento-streams/presentation.pdf)
 
 
-### Exemplos de Código
-
--   [Pthreads](https://github.com/phrb/PPD/tree/main/lectures/tex/pthreads_omp/code_samples/pthreads)
--   [OpenMP](https://github.com/phrb/PPD/tree/main/lectures/tex/pthreads_omp/code_samples/omp)
+### [Exemplos de Código](lectures/org/linux-redirecionamento-streams/src/pipe_example.html)
 
 
 ### Recursos
