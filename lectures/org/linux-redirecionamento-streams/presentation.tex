@@ -1,4 +1,4 @@
-% Created 2021-06-17 Thu 17:14
+% Created 2021-06-17 Thu 17:24
 % Intended LaTeX compiler: pdflatex
 \documentclass[10pt, compress, aspectratio=169, xcolor={table,usenames,dvipsnames}]{beamer}
 
@@ -75,8 +75,8 @@ Padrão em Sistemas POSIX}
 \maketitle
 
 \section{Introdução}
-\label{sec:orgd0c8a6f}
-\begin{frame}[label={sec:org519250f}]{Conteúdo e Objetivos de Aprendizagem}
+\label{sec:org2c04d2c}
+\begin{frame}[label={sec:org7ecb942}]{Conteúdo e Objetivos de Aprendizagem}
 \begin{columns}
 \begin{column}{0.65\columnwidth}
 \begin{block}{Tópicos}
@@ -108,7 +108,7 @@ de descritores de arquivo} em processos POSIX
 \end{column}
 \end{columns}
 \end{frame}
-\begin{frame}[label={sec:orge3a8935}]{Recursos Extras}
+\begin{frame}[label={sec:org9aa1d9c}]{Recursos Extras}
 \begin{columns}
 \begin{column}{0.5\columnwidth}
 \begin{block}{The Linux API}
@@ -137,7 +137,7 @@ de descritores de arquivo} em processos POSIX
 \end{columns}
 \end{frame}
 
-\begin{frame}[label={sec:orgdc714ed}]{Registrando Mensagens e Monitorando Sistemas}
+\begin{frame}[label={sec:org7375941}]{Registrando Mensagens e Monitorando Sistemas}
 \begin{columns}
 \begin{column}{0.6\columnwidth}
 \begin{block}{Problemas}
@@ -161,7 +161,7 @@ entrada/saída, e rede?
 \end{column}
 \end{columns}
 \end{frame}
-\begin{frame}[label={sec:orgcfd4470},t,fragile]{Registrando Mensagens e Monitorando Sistemas}
+\begin{frame}[label={sec:orgdfe35ec},t,fragile]{Registrando Mensagens e Monitorando Sistemas}
 \begin{columns}
 \begin{column}{0.5\columnwidth}
 \begin{block}{Registro de Mensagens}
@@ -189,8 +189,8 @@ entrada/saída, e rede?
 \end{frame}
 
 \section{Redirecionamento de Entrada/Saída em \emph{bash}}
-\label{sec:org804531f}
-\begin{frame}[label={sec:org03ed6e7}]{Streams Padrão em Processos POSIX}
+\label{sec:org4576243}
+\begin{frame}[label={sec:org32d6db1}]{Streams Padrão em Processos POSIX}
 \begin{itemize}
 \item \alert{Streams}, ou \alert{fluxos}, são \alert{canais de comunicação} indexados por \alert{descritores
 de arquivo}
@@ -209,7 +209,7 @@ de arquivo}
 \end{tabular}
 \end{center}
 \end{frame}
-\begin{frame}[label={sec:orga7d89e4},fragile]{Usando Arquivos de \emph{Log}: Redirecionamento de Saída e Erros}
+\begin{frame}[label={sec:orgf4e1dc0},fragile]{Usando Arquivos de \emph{Log}: Redirecionamento de Saída e Erros}
  \begin{figure}
 \begin{minipage}{.8\textwidth}
 
@@ -268,7 +268,7 @@ cat: não-existe.txt: No such file or directory
 \end{figure}
 \end{frame}
 
-\begin{frame}[label={sec:orgdd5fb39},fragile]{Monitorando o Linux: Redirecionamento de Saída}
+\begin{frame}[label={sec:orgc2bd25a},fragile]{Monitorando o Linux: Redirecionamento de Saída}
  \begin{block}{Monitorando o Consumo de Memória}
 \begin{figure}
 \begin{minipage}{\textwidth}
@@ -295,7 +295,7 @@ cat /proc/meminfo > meminfo.log
 \end{block}
 \end{frame}
 
-\begin{frame}[label={sec:orgc87c275},fragile]{Monitorando o Linux: Redirecionamento de Entrada}
+\begin{frame}[label={sec:org6ddc4fa},fragile]{Monitorando o Linux: Redirecionamento de Entrada}
  \begin{block}{Monitorando o Clock da CPU}
 \begin{figure}
 \begin{minipage}{0.9\textwidth}
@@ -330,7 +330,7 @@ cpu MHz        : 900.001
 \end{block}
 \end{frame}
 
-\begin{frame}[label={sec:orge021b22},fragile]{Exercício: Script de Redirecionamento}
+\begin{frame}[label={sec:org21e43a7},fragile]{Exercício: Script de Redirecionamento}
  Escreva um \alert{script \emph{bash}} que:
 
 \begin{enumerate}
@@ -358,7 +358,7 @@ e Erro} para \texttt{\$3}
 \end{figure}
 \end{frame}
 
-\begin{frame}[label={sec:org7a497a2},fragile]{Exercício: Script de Redirecionamento}
+\begin{frame}[label={sec:org9d09d58},fragile]{Exercício: Script de Redirecionamento}
  \begin{figure}
 \begin{minipage}{\textwidth}
 \begin{minted}[]{bash}
@@ -386,7 +386,7 @@ cpu MHz        : 3000.000
 \end{figure}
 \end{frame}
 
-\begin{frame}[label={sec:org7122e23},fragile]{Síntese: Redirecionamento de Streams em \emph{bash}}
+\begin{frame}[label={sec:orgb83e15e},fragile]{Síntese: Redirecionamento de Streams em \emph{bash}}
 \begin{figure}
 \small
   \begin{tabular}{p{0.2\textwidth}p{0.52\textwidth}}
@@ -419,7 +419,7 @@ cpu MHz        : 3000.000
 \end{figure}
 \end{frame}
 
-\begin{frame}[label={sec:orgc778f0e}]{Conectando Streams de Entrada/Saída}
+\begin{frame}[label={sec:orgffcf0ec}]{Conectando Streams de Entrada/Saída}
 \begin{columns}
 \begin{column}{0.6\columnwidth}
 \begin{block}{Problemas}
@@ -441,7 +441,7 @@ cpu MHz        : 3000.000
 \end{column}
 \end{columns}
 \end{frame}
-\begin{frame}[label={sec:orgaa7d7e7},t,fragile]{Conectando Streams de Entrada/Saída}
+\begin{frame}[label={sec:orgb284d8b},t,fragile]{Conectando Streams de Entrada/Saída}
 \begin{columns}
 \begin{column}{0.5\columnwidth}
 \begin{block}{Conectando Streams em \emph{bash}}
@@ -468,8 +468,8 @@ cpu MHz        : 3000.000
 \end{columns}
 \end{frame}
 \section{Duplicando Descritores de Arquivo com Chamadas de Sistema}
-\label{sec:org0ad5b25}
-\begin{frame}[label={sec:org00d5cbe}]{Descritores de Arquivo em Processos POSIX}
+\label{sec:org970fd7e}
+\begin{frame}[label={sec:org3b911c1}]{Descritores de Arquivo em Processos POSIX}
 \begin{center}
 \includegraphics[width=0.68\textwidth]{../../ppd-images/file_descriptors_kerrisk.pdf}
 \end{center}
@@ -480,7 +480,7 @@ The Linux Programming API, Michael Kerrisk, pág. 95
 \end{center}
 \end{frame}
 
-\begin{frame}[label={sec:orgbdede6f},fragile]{Algumas Chamadas POSIX}
+\begin{frame}[label={sec:org096121d},fragile]{Algumas Chamadas POSIX}
  \begin{figure}
 \begin{minipage}{0.6\textwidth}
 
@@ -511,7 +511,7 @@ int pipe(int filedes[2]);
 \end{figure}
 \end{frame}
 
-\begin{frame}[label={sec:orgb2485c5},fragile]{Chamadas \emph{dup} e \emph{dup2}}
+\begin{frame}[label={sec:org682c96f},fragile]{Chamadas \emph{dup} e \emph{dup2}}
  \texttt{int dup(int oldfd);}
 \begin{itemize}
 \item \alert{Duplica} o descritor de arquivo \texttt{oldfd}, usando o menor descritor disponível
@@ -546,7 +546,7 @@ DESCRIPTION
 \end{figure}
 \end{frame}
 
-\begin{frame}[label={sec:org0d8e776},fragile]{Chamada \emph{pipe}}
+\begin{frame}[label={sec:org0cbb015},fragile]{Chamada \emph{pipe}}
  \texttt{int pipe(int filedes[2]);}
 \begin{itemize}
 \item Abre  um  canal  de  comunicação \alert{entre  processos},  usando  \alert{descritores  de
@@ -577,7 +577,7 @@ DESCRIPTION
 \end{figure}
 \end{frame}
 
-\begin{frame}[label={sec:org41b232c},fragile]{Exercício: Redirecionamento em C}
+\begin{frame}[label={sec:orgd273998},fragile]{Exercício: Redirecionamento em C}
  \begin{columns}
 \begin{column}{0.5\columnwidth}
 \begin{block}{Usando um \emph{pipe} para Conectar Filtros}
@@ -625,7 +625,7 @@ src/pipe_example
 \end{block}
 \end{frame}
 
-\begin{frame}[label={sec:org86b8f9a},fragile]{Síntese: Duplicando Descritores de Arquivo}
+\begin{frame}[label={sec:org4c4e0d1},fragile]{Síntese: Duplicando Descritores de Arquivo}
  \begin{columns}
 \begin{column}{0.5\columnwidth}
 \begin{block}{Descritores de Arquivo}
@@ -675,8 +675,9 @@ arquivo}
 \end{frame}
 
 \section{Revisitando os Objetivos de Aprendizagem}
-\label{sec:org4138641}
-\begin{frame}[label={sec:org431a574}]{Conteúdo e Objetivos de Aprendizagem}
+\label{sec:org37bcdb1}
+\begin{frame}[label={sec:org9aa3b98}]{Objetivos de Aprendizagem e Exercício}
+\vspace{-0.8em}
 \begin{columns}
 \begin{column}{0.65\columnwidth}
 \begin{block}{Tópicos}
@@ -685,22 +686,27 @@ arquivo}
 chamadas de sistema \emph{\alert{dup}} e \emph{\alert{dup2}}
 \end{itemize}
 
-\begin{block}{Habilidades}
+\vspace{-0.5em}
+
+\begin{block}{Objetivos}
 \begin{itemize}
 \item Escrever scripts em \alert{bash} e programas  em \alert{C} que \alert{redirecionem} os \alert{streams}
 de \alert{Entrada/Saída} de programas
-\end{itemize}
-\end{block}
-
-\begin{block}{Conhecimentos}
-\begin{itemize}
 \item Compreender o redirecionamento de streams  de Entrada/Saída como a \alert{duplicação
 de descritores de arquivo} em processos POSIX
+\end{itemize}
+
+\vspace{-0.5em}
+\end{block}
+
+\begin{block}{Exercício}
+\begin{itemize}
+\item Pesquise sobre a chamada de sistema  \emph{\alert{fcntl}}, \alert{escreva} as chamadas \emph{dup} e
+\emph{dup2} com ela, e as \alert{substitua} no exemplo da conexão de filtros com \emph{pipe}
 \end{itemize}
 \end{block}
 \end{block}
 \end{column}
-
 \begin{column}{0.35\columnwidth}
 \begin{center}
 \includegraphics[width=0.7\textwidth]{../../ppd-images/tux_badge.png}
@@ -708,5 +714,7 @@ de descritores de arquivo} em processos POSIX
 \end{column}
 \end{columns}
 \end{frame}
+
+
 \maketitle
 \end{document}

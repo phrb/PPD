@@ -784,7 +784,8 @@ tree src/pipe_example
 #+latex: \egroup
 
 * Revisitando os Objetivos de Aprendizagem
-** Conteúdo e Objetivos de Aprendizagem
+** Objetivos de Aprendizagem e Exercício
+\vspace{-0.8em}
 *** Tópicos                                                 :B_block:BMCOL:
 :PROPERTIES:
 :BEAMER_env: block
@@ -793,22 +794,23 @@ tree src/pipe_example
 - *Streams*, ou *fluxos* padrão em Processos POSIX,
   chamadas de sistema /*dup*/ e /*dup2*/
 
-**** Habilidades                                                 :B_block:
+\vspace{-0.5em}
+
+**** Objetivos                                                   :B_block:
 :PROPERTIES:
 :BEAMER_env: block
 :END:
 
 - Escrever scripts em *bash* e programas  em *C* que *redirecionem* os *streams*
   de *Entrada/Saída* de programas
-
-**** Conhecimentos                                               :B_block:
-:PROPERTIES:
-:BEAMER_env: block
-:END:
-
 - Compreender o redirecionamento de streams  de Entrada/Saída como a *duplicação
   de descritores de arquivo* em processos POSIX
 
+\vspace{-0.5em}
+
+**** Exercício
+- Pesquise sobre a chamada de sistema  /*fcntl*/, *escreva* as chamadas /dup/ e
+  /dup2/ com ela, e as *substitua* no exemplo da conexão de filtros com /pipe/
 *** Image                                                           :BMCOL:
 :PROPERTIES:
 :BEAMER_col: 0.35
@@ -816,6 +818,8 @@ tree src/pipe_example
 
 #+ATTR_LATEX: :width 0.7\textwidth
 [[file:../../ppd-images/tux_badge.png]]
+
+
 * Ending Title :B_ignoreheading:
 :PROPERTIES:
 :BEAMER_env: ignoreheading
