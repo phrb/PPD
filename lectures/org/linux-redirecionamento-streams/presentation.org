@@ -149,6 +149,7 @@ See [[Emacs Setup]] below for local buffer variables
 #+ATTR_LATEX: :width 0.5\columnwidth
 [[file:../../ppd-images/kerrisk_api.png]]
 
+- https://man7.org/tlpi
 - Capítulos 4, 5, e 44
 
 *** Site da Aula                                            :B_block:BMCOL:
@@ -156,6 +157,12 @@ See [[Emacs Setup]] below for local buffer variables
 :BEAMER_env: block
 :BEAMER_col: 0.5
 :END:
+
+#+ATTR_LATEX: :width \columnwidth
+[[file:../../ppd-images/streams_redir.png]]
+
+- https://phrb.github.io/PPD
+
 ** Registrando Mensagens e Monitorando Sistemas
 *** Problemas                                               :B_block:BMCOL:
 :PROPERTIES:
@@ -438,7 +445,7 @@ cat out.log | sed "s/\t/    /g"
 \end{figure}
 #+end_export
 
-** Síntese: Redirecionamento em Bash
+** Síntese: Redirecionamento de Streams em /bash/
 :PROPERTIES:
 :BEAMER_OPT: fragile
 :END:
@@ -454,7 +461,7 @@ cat out.log | sed "s/\t/    /g"
 \texttt{[n]> arquivo} \\
 \texttt{[n]>> arquivo}
     \end{minipage} & Redireciona o descritor \texttt{n} para \texttt{arquivo},
-    sobreescrevendo (\texttt{>}) ou adicionando (\texttt{>>}) \\
+    sobrescrevendo (\texttt{>}) ou adicionando (\texttt{>>}) \\
     \addlinespace[1em]
     \begin{minipage}[t]{0.3\textwidth}
 \texttt{\&> arquivo}
@@ -498,6 +505,40 @@ cat out.log | sed "s/\t/    /g"
 
   \includegraphics[height=1.3cm]{../../ppd-images/brick_icon.png}
 \end{center}
+#+end_export
+** Conectando Streams de Entrada/Saída
+:PROPERTIES:
+:BEAMER_opt: t,fragile
+:END:
+*** Conectando Streams em /bash/                            :B_block:BMCOL:
+:PROPERTIES:
+:BEAMER_col: 0.5
+:BEAMER_env: block
+:END:
+
+#+begin_export latex
+{\rmfamily
+#+end_export
+
+-
+
+#+begin_export latex
+}
+#+end_export
+*** Conectando Streams em /C/                               :B_block:BMCOL:
+:PROPERTIES:
+:BEAMER_col: 0.5
+:BEAMER_env: block
+:END:
+
+#+begin_export latex
+{\rmfamily
+#+end_export
+
+-
+
+#+begin_export latex
+}
 #+end_export
 * Duplicando Descritores de Arquivo com Chamadas de Sistema
 ** Descritores de Arquivo em Processos POSIX
@@ -699,7 +740,82 @@ tree src/pipe_example
 - https://man7.org/tlpi/code/online/dist/pipes/pipe_ls_wc.c.html
 
 ** Síntese: Duplicando Descritores de Arquivo
+
+*** Descritores de Arquivo                                  :B_block:BMCOL:
+:PROPERTIES:
+:BEAMER_env: block
+:BEAMER_col: 0.5
+:END:
+#+ATTR_LATEX: :width \textwidth
+[[file:../../ppd-images/file_descriptors_kerrisk.pdf]]
+
+*** Pipes                                                   :B_block:BMCOL:
+:PROPERTIES:
+:BEAMER_env: block
+:BEAMER_col: 0.5
+:END:
+#+ATTR_LATEX: :width \textwidth
+[[file:../../ppd-images/pipe_filters.pdf]]
+
+\vspace{-0.9em}
+
+**** Chamadas de Sistema                                         :B_block:
+:PROPERTIES:
+:BEAMER_env: block
+:END:
+
+\vspace{0.2em}
+
+#+latex: \bgroup\scriptsize
+=int dup(int oldfd);=
+\vspace{-0.6em}
+- *Duplica* o descritor de arquivo =oldfd=, usando o menor descritor disponível
+
+\vspace{-0.6em}
+=int dup2(int oldfd, int newfd);=
+\vspace{-0.6em}
+- *Duplica* =oldfd= usando =newfd=, fecha =newfd= se necessário
+
+\vspace{-0.6em}
+=int pipe(int filedes[2]);=
+\vspace{-0.6em}
+- Abre  um  canal  de  comunicação *entre  processos*,  usando  *descritores  de
+  arquivo*
+#+latex: \egroup
+
 * Revisitando os Objetivos de Aprendizagem
+** Conteúdo e Objetivos de Aprendizagem
+*** Tópicos                                                 :B_block:BMCOL:
+:PROPERTIES:
+:BEAMER_env: block
+:BEAMER_col: 0.65
+:END:
+- *Streams*, ou *fluxos* padrão em Processos POSIX,
+  chamadas de sistema /*dup*/ e /*dup2*/
+
+**** Habilidades                                                 :B_block:
+:PROPERTIES:
+:BEAMER_env: block
+:END:
+
+- Escrever scripts em *bash* e programas  em *C* que *redirecionem* os *streams*
+  de *Entrada/Saída* de programas
+
+**** Conhecimentos                                               :B_block:
+:PROPERTIES:
+:BEAMER_env: block
+:END:
+
+- Compreender o redirecionamento de streams  de Entrada/Saída como a *duplicação
+  de descritores de arquivo* em processos POSIX
+
+*** Image                                                           :BMCOL:
+:PROPERTIES:
+:BEAMER_col: 0.35
+:END:
+
+#+ATTR_LATEX: :width 0.7\textwidth
+[[file:../../ppd-images/tux_badge.png]]
 * Ending Title :B_ignoreheading:
 :PROPERTIES:
 :BEAMER_env: ignoreheading
