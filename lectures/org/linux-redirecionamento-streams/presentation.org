@@ -152,7 +152,7 @@ See [[Emacs Setup]] below for local buffer variables
 - https://man7.org/tlpi
 - Capítulos 4, 5, e 44
 
-*** Site da Aula                                            :B_block:BMCOL:
+*** Site com Slides e Exemplos                              :B_block:BMCOL:
 :PROPERTIES:
 :BEAMER_env: block
 :BEAMER_col: 0.5
@@ -198,30 +198,15 @@ See [[Emacs Setup]] below for local buffer variables
 :BEAMER_env: block
 :END:
 
-#+begin_export latex
-{\rmfamily
-#+end_export
-
 -
 
-#+begin_export latex
-}
-#+end_export
 *** Monitoramento de Recursos                               :B_block:BMCOL:
 :PROPERTIES:
 :BEAMER_col: 0.5
 :BEAMER_env: block
 :END:
 
-#+begin_export latex
-{\rmfamily
-#+end_export
-
 -
-
-#+begin_export latex
-}
-#+end_export
 
 * Redirecionamento de Entrada/Saída em /bash/
 ** Streams Padrão em Processos POSIX
@@ -516,30 +501,16 @@ cat out.log | sed "s/\t/    /g"
 :BEAMER_env: block
 :END:
 
-#+begin_export latex
-{\rmfamily
-#+end_export
-
 -
 
-#+begin_export latex
-}
-#+end_export
 *** Conectando Streams em /C/                               :B_block:BMCOL:
 :PROPERTIES:
 :BEAMER_col: 0.5
 :BEAMER_env: block
 :END:
 
-#+begin_export latex
-{\rmfamily
-#+end_export
-
 -
 
-#+begin_export latex
-}
-#+end_export
 * Duplicando Descritores de Arquivo com Chamadas de Sistema
 ** Descritores de Arquivo em Processos POSIX
 #+ATTR_LATEX: :width 0.68\textwidth
