@@ -1,6 +1,6 @@
 
 
-# Redirecionamento de Streams Padrão em Sistemas POSIX
+# Introdução à Programação de GPUs com a Plataforma CUDA
 
 [![img](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg)](http://creativecommons.org/licenses/by/4.0/)
 
@@ -8,7 +8,7 @@
 ## Conteúdo
 
 
-### [slides](https://github.com/phrb/PPD/raw/main/lectures/tex/cuda/src/intro-cuda-pt.pdf)
+### [Slides](https://github.com/phrb/PPD/raw/main/lectures/tex/cuda/src/intro-cuda-pt.pdf)
 
 
 ### Exemplos de Código
