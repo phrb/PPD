@@ -1,64 +1,71 @@
-\documentclass[10pt, compress]{beamer}
+\documentclass[10pt, compress, aspectratio=43, xcolor={table,usenames,dvipsnames}]{beamer}
 
-\usetheme[numbering=fraction, progressbar=none, titleformat=smallcaps, sectionpage=none]{metropolis}
+\usepackage{booktabs}
+\mode<beamer>{\usetheme[numbering=fraction, progressbar=none, titleformat frame=regular, titleformat title=regular, sectionpage=progressbar]{metropolis}}
 \usepackage{booktabs}
 \usepackage{array}
-\usepackage{listings}
+\usepackage{multirow}
+\usepackage{caption}
 \usepackage{graphicx}
-\usepackage[brazilian]{babel}
+\usepackage[english]{babel}
 \usepackage[scale=2]{ccicons}
-\usepackage{url}
+\usepackage{hyperref}
 \usepackage{relsize}
+\usepackage{amsmath}
 \usepackage{wasysym}
-
+\usepackage{bm}
+\usepackage{ragged2e}
+\usepackage{textcomp}
 \usepackage{pgfplots}
 \usepgfplotslibrary{dateplot}
-
 \definecolor{Base}{HTML}{191F26}
-\definecolor{Accent}{HTML}{157FFF}
-
+\colorlet{Accent}{BrickRed}
+\colorlet{CodeBg}{Gray!20}
+\colorlet{CodeHighBg}{Accent!10}
+\colorlet{Highlight}{Accent!18}
 \setbeamercolor{alerted text}{fg=Accent}
-\setbeamercolor{frametitle}{bg=Base}
-
-\setsansfont[BoldFont={Source Sans Pro Semibold},
-              Numbers={OldStyle}]{Source Sans Pro}
-
-\lstset{ %
-  backgroundcolor={},
-  basicstyle=\ttfamily\footnotesize,
-  breakatwhitespace=true,
-  breaklines=true,
-  captionpos=n,
-  commentstyle=\color{Accent},
-  escapeinside={\%*}{*)},
-  extendedchars=true,
-  frame=n,
-  keywordstyle=\color{Accent},
-  language=C++,
-  rulecolor=\color{black},
-  showspaces=false,
-  showstringspaces=false,
-  showtabs=false,
-  stepnumber=2,
-  stringstyle=\color{gray},
-  tabsize=2,
-  keywords={thrust,plus,device_vector, copy,transform,begin,end, copyin,
-  copyout, acc, \_\_global\_\_, void, int, float, main, threadIdx, blockIdx,
-  blockDim, if, else, malloc, NULL, cudaMalloc, cudaMemcpy, cudaSuccess,
-  cudaGetLastError, cudaDeviceSynchronize, cudaFree, cudaMemcpyDeviceToHost,
-  cudaMemcpyHostToDevice, const, data, independent, kernels, loop,
-  fprintf, stderr, cudaGetErrorString, EXIT_FAILURE, for, dim3},
-  otherkeywords={::, \#pragma, \#include, <<<,>>>, \&, \*, +, -, /, [, ], >, <}
+\setbeamercolor{frametitle}{fg=Accent,bg=normal text.bg}
+\setbeamercolor{normal text}{bg=black!2,fg=Base}
+\usefonttheme{professionalfonts}
+\usepackage{newpxtext}
+\usepackage{newpxmath}
+\usepackage{minted}
+\usemintedstyle{vs}
+\setminted{
+beameroverlays=true,
+frame=none,
+bgcolor=CodeBg,
+fontsize=\scriptsize,
+baselinestretch=1.2,
+framesep=0.6em,
+tabsize=2,
+breaklines
 }
-
-\renewcommand*{\UrlFont}{\ttfamily\smaller\relax}
+\AtBeginEnvironment{snugshade*}{\vspace{-\FrameSep}}
+\AfterEndEnvironment{snugshade*}{\vspace{-\FrameSep}}
+\usepackage{DejaVuSansMono}
+\setmonofont{DejaVuSansMono}
+\renewcommand*{\UrlFont}{\ttfamily\smaller[2]\relax}
+\addtobeamertemplate{block begin}{}{\justifying}
+\captionsetup[figure]{labelformat=empty}
+\hypersetup{
+colorlinks=true,
+linkcolor={Accent},
+citecolor={Accent},
+urlcolor={Accent}
+}
+\makeatletter
+\setlength{\metropolis@titleseparator@linewidth}{1pt}
+\setlength{\metropolis@progressonsectionpage@linewidth}{2.5pt}
+\makeatother
+\usetheme{default}
 
 \graphicspath{{../../../ppd-images/}}
 
 \title{Introdução à Programação de GPUs \\ com a Plataforma CUDA}
 \author{\footnotesize Pedro Bruel \\ {\scriptsize phrb@ime.usp.br}}
 \institute{\includegraphics[height=2cm]{imelogo}\\[0.2cm] Instituto de Matemática e Estatística \\ Universidade de São Paulo}
-\date{\scriptsize 09 de Maio de 2017}
+\date{\scriptsize 21 de Maio de 2021}
 
 \begin{document}
 
@@ -127,18 +134,17 @@
     \tableofcontents[hideallsubsections, part=2]
 \end{frame}
 
-\begin{frame}
-    \frametitle{Slides}
-    \begin{center}
-        \includegraphics[width=.18\textwidth]{github}
-    \end{center}
-    O \emph{pdf} com as aulas e todo o código fonte estão no \alert{GitHub}:
-
-    \begin{itemize}
-        \item \url{github.com/phrb/intro-cuda}
-    \end{itemize}
-\end{frame}
-
+% \begin{frame}
+%     \frametitle{Slides}
+%     \begin{center}
+%         \includegraphics[width=.18\textwidth]{github}
+%     \end{center}
+%     O \emph{pdf} com as aulas e todo o código fonte estão no \alert{GitHub}:
+%
+%     \begin{itemize}
+%         \item \url{github.com/phrb/intro-cuda}
+%     \end{itemize}
+% \end{frame}
 
 \section{Computação Heterogênea}
 
@@ -487,21 +493,21 @@
 \begin{frame}[fragile]
     \frametitle{Bibliotecas}
     Soma de vetores com a biblioteca \alert{Thrust}:
-    \begin{lstlisting}
+    \begin{minted}{C}
     thrust::device_vector<float> device_input1(input_lenght);
     thrust::device_vector<float> device_input2(input_lenght);
     thrust::device_vector<float> device_output(input_lenght);
-    \end{lstlisting}
+    \end{minted}
 
-    \begin{lstlisting}
+    \begin{minted}{C}
     thrust::copy(host_input1, host_input1 + input_lenght, device_input1.begin());
 
     thrust::copy(host_input2, host_input2 + input_lenght, device_input2.begin());
-    \end{lstlisting}
+    \end{minted}
 
-    \begin{lstlisting}
+    \begin{minted}{C}
     thrust::transform(device_input1.begin(), device_input1.end(), device_input2.begin(), device_output.begin(), thrust::plus<float>());
-    \end{lstlisting}
+    \end{minted}
 \end{frame}
 
 \subsection{Diretivas de Compilação}
@@ -521,18 +527,18 @@
 \begin{frame}[fragile]
     \frametitle{Diretivas de Compilação}
     Soma de vetores com \alert{OpenACC}:
-    \begin{lstlisting}
+    \begin{minted}{C}
     #pragma acc data copyin(input1[0:input_lenght],input2[0:input_lenght]), copyout(output[0:input_lenght])
-    \end{lstlisting}
+    \end{minted}
 
-    \begin{lstlisting}
+    \begin{minted}{C}
     {
         #pragma acc kernels loop independent
         for(i = 0; i < input_lenght; i++) {
             output[i] = input1[i] + input2[i];
         }
     }
-    \end{lstlisting}
+    \end{minted}
 \end{frame}
 
 \subsection{Linguagens de Programação}
@@ -624,22 +630,22 @@
 \begin{frame}[fragile]
     \frametitle{CUDA C: \textit{Kernel}}
     Escrevendo e \alert{lançando} (launching) um \alert{kernel}:
-    \begin{lstlisting}
+    \begin{minted}{C}
     #include <cuda_runtime.h>
 
     __global__ void VecAdd(float* A, float* B, float* C) {
         int i = threadIdx.x;
         C[i] = A[i] + B[i];
     }
-    \end{lstlisting}
+    \end{minted}
 
-    \begin{lstlisting}
+    \begin{minted}{C}
     int main() {
         ...
         VecAdd<<<1, N>>>(A, B, C);
         ...
     }
-    \end{lstlisting}
+    \end{minted}
     \vfill
 
     \begin{center}
@@ -686,15 +692,15 @@
 
 \begin{frame}[fragile]
     \frametitle{CUDA C: Hierarquia de \textit{Threads}}
-    \begin{lstlisting}
+    \begin{minted}{C}
     __global__ void MatAdd(float A[N][N], float B[N][N], float C[N][N]) {
         int i = threadIdx.x;
         int j = threadIdx.y;
         C[i][j] = A[i][j] + B[i][j];
     }
-    \end{lstlisting}
+    \end{minted}
 
-    \begin{lstlisting}
+    \begin{minted}{C}
     int main() {
         ...
         int numBlocks = 1;
@@ -702,7 +708,7 @@
         MatAdd<<<numBlocks, threadsPerBlock>>>(A, B, C);
         ...
     }
-    \end{lstlisting}
+    \end{minted}
     \vfill
 
     \begin{center}
@@ -712,7 +718,7 @@
 
 \begin{frame}[fragile]
     \frametitle{CUDA C: Hierarquia de \textit{Threads}}
-    \begin{lstlisting}
+    \begin{minted}{C}
     __global__ void MatAdd(float A[N][N], float B[N][N], float C[N][N]) {
         int i = blockIdx.x * blockDim.x + threadIdx.x;
         int j = blockIdx.y * blockDim.y + threadIdx.y;
@@ -720,9 +726,9 @@
             C[i][j] = A[i][j] + B[i][j];
         }
     }
-    \end{lstlisting}
+    \end{minted}
 
-    \begin{lstlisting}
+    \begin{minted}{C}
     int main() {
         ...
         dim3 threadsPerBlock(16, 16);
@@ -730,7 +736,7 @@
         MatAdd<<<numBlocks, threadsPerBlock>>>(A, B, C);
         ...
     }
-    \end{lstlisting}
+    \end{minted}
     \vfill
 
     \begin{center}
@@ -743,13 +749,13 @@
     Sobre a sintaxe de lançamento e configuração \texttt{\scriptsize{\alert{<<<} Dg, Db, Ns, S \alert{>>>}}}:
     \begin{itemize}
         \item \texttt{\alert{dim3} Dg} determina dimensão e tamanho do \textit{grid}:
-\begin{lstlisting}
+\begin{minted}{C}
 Dg.x * Dg.y * Dg.z = numBlocks
-\end{lstlisting}
+\end{minted}
         \item \texttt{\alert{dim3} Db} determina dimensão e tamanho de cada \textit{block}:
-\begin{lstlisting}
+\begin{minted}{C}
 Db.x * Db.y * Db.z = threadsPerBlock
-\end{lstlisting}
+\end{minted}
         \item \texttt{\alert{size\_t} Ns = 0}: \textit{Bytes} extras na memória compartilhada
         \item \texttt{\alert{cudaStream\_t} S = 0}: CUDA \textit{stream}
     \end{itemize}
@@ -821,7 +827,7 @@ Db.x * Db.y * Db.z = threadsPerBlock
 
 \begin{frame}[fragile]
     \frametitle{Exemplo: Adição de Vetores}
-    \begin{lstlisting}
+    \begin{minted}{C}
     __global__ void vectorAdd(const float *A, const float *B, float *C, int numElements) {
         int i = blockDim.x * blockIdx.x + threadIdx.x;
 
@@ -829,7 +835,7 @@ Db.x * Db.y * Db.z = threadsPerBlock
             C[i] = A[i] + B[i];
         }
     }
-    \end{lstlisting}
+    \end{minted}
 
     \vfill
 
@@ -840,11 +846,11 @@ Db.x * Db.y * Db.z = threadsPerBlock
 
 \begin{frame}[fragile]
     \frametitle{Exemplo: Adição de Vetores}
-    \begin{lstlisting}[basicstyle=\ttfamily\scriptsize]
+    \begin{minted}{C}
     #include <cuda_runtime.h>
-    \end{lstlisting}
+    \end{minted}
 
-    \begin{lstlisting}[basicstyle=\ttfamily\scriptsize]
+    \begin{minted}{C}
     float *h_A = (float *) malloc(size);
     if (h_A == NULL) { ... };
 
@@ -852,26 +858,26 @@ Db.x * Db.y * Db.z = threadsPerBlock
     err = cudaMalloc((void **) &d_A, size);
     err = cudaMemcpy(d_A, h_A, size, cudaMemcpyHostToDevice);
     if (err != cudaSuccess) { ... };
-    \end{lstlisting}
+    \end{minted}
 
-    \begin{lstlisting}[basicstyle=\ttfamily\scriptsize]
+    \begin{minted}{C}
     int threadsPerBlock = 256;
     int blocksPerGrid = (numElements + threadsPerBlock - 1) / threadsPerBlock;
-    \end{lstlisting}
+    \end{minted}
 
-    \begin{lstlisting}[basicstyle=\ttfamily\scriptsize]
+    \begin{minted}{C}
     vectorAdd<<<blocksPerGrid, threadsPerBlock>>>(d_A, d_B, d_C, numElements);
 
     err = cudaGetLastError()
     err = cudaDeviceSynchronize()
     if (err != cudaSuccess) { ... };
-    \end{lstlisting}
+    \end{minted}
 
-    \begin{lstlisting}[basicstyle=\ttfamily\scriptsize]
+    \begin{minted}{C}
     err = cudaMemcpy(h_C, d_C, size, cudaMemcpyDeviceToHost);
     err = cudaFree(d_A);
     if (err != cudaSuccess) { ... };
-    \end{lstlisting}
+    \end{minted}
 
     \vfill
 
@@ -884,21 +890,21 @@ Db.x * Db.y * Db.z = threadsPerBlock
     \frametitle{Exemplo: Dica Prática}
     \alert{Sempre} procure por erros!
 
-    \begin{lstlisting}
+    \begin{minted}{C}
     float *d_A = NULL;
     err = cudaMalloc((void **) &d_A, size);
 
     err = cudaGetLastError()
 
     err = cudaDeviceSynchronize()
-    \end{lstlisting}
+    \end{minted}
 
-    \begin{lstlisting}
+    \begin{minted}{C}
     if (err != cudaSuccess) {
         fprintf(stderr, "Failed to allocate device vector A (error code %s)!\n", cudaGetErrorString(err));
         exit(EXIT_FAILURE);
     }
-    \end{lstlisting}
+    \end{minted}
 
     \begin{center}
         \tiny{Fonte: \url{github.com/phrb/intro-cuda} [Acessado em 29/07/16]}
@@ -1010,17 +1016,17 @@ Db.x * Db.y * Db.z = threadsPerBlock
     \tableofcontents[hideallsubsections, part=2]
 \end{frame}
 
-\begin{frame}
-    \frametitle{Slides}
-    \begin{center}
-        \includegraphics[width=.18\textwidth]{github}
-    \end{center}
-    O \emph{pdf} com as aulas e todo o código fonte estão no \alert{GitHub}:
-
-    \begin{itemize}
-        \item \url{github.com/phrb/intro-cuda}
-    \end{itemize}
-\end{frame}
+% \begin{frame}
+%     \frametitle{Slides}
+%     \begin{center}
+%         \includegraphics[width=.18\textwidth]{github}
+%     \end{center}
+%     O \emph{pdf} com as aulas e todo o código fonte estão no \alert{GitHub}:
+%
+%     \begin{itemize}
+%         \item \url{github.com/phrb/intro-cuda}
+%     \end{itemize}
+% \end{frame}
 
 \subsection{Relembrando}
 
@@ -1131,7 +1137,7 @@ Db.x * Db.y * Db.z = threadsPerBlock
 
 \begin{frame}[fragile]
     \frametitle{Exemplo: Adição de Vetores}
-    \begin{lstlisting}[basicstyle=\ttfamily\scriptsize]
+    \begin{minted}{C}
     #include <cuda_runtime.h>
 
     float *h_A = (float *) malloc(size);
@@ -1154,7 +1160,7 @@ Db.x * Db.y * Db.z = threadsPerBlock
     err = cudaMemcpy(h_C, d_C, size, cudaMemcpyDeviceToHost);
     err = cudaFree(d_A);
     if (err != cudaSuccess) { ... };
-    \end{lstlisting}
+    \end{minted}
 
     \vfill
 
@@ -1180,7 +1186,7 @@ Db.x * Db.y * Db.z = threadsPerBlock
     \frametitle{Dica Prática}
     \alert{Sempre} procure por erros!
 
-    \begin{lstlisting}
+    \begin{minted}{C}
     float *d_A = NULL;
     err = cudaMalloc((void **) &d_A, size);
 
@@ -1192,7 +1198,7 @@ Db.x * Db.y * Db.z = threadsPerBlock
         fprintf(stderr, "Failed to allocate device vector A (error code %s)!\n", cudaGetErrorString(err));
         exit(EXIT_FAILURE);
     }
-    \end{lstlisting}
+    \end{minted}
 
     \begin{center}
         \tiny{Fonte: \url{github.com/phrb/intro-cuda} [Acessado em 29/07/16]}
