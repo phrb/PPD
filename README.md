@@ -15,7 +15,7 @@ programação paralela e distribuída, e tópicos semelhantes
 
 -   [Pthreads e OpenMP](https://phrb.github.io/PPD/lectures/tex/pthreads_omp/index.html)
 -   MPI
--   CUDA
+-   [CUDA](https://phrb.github.io/PPD/lectures/tex/cuda/index.html)
 -   LLVM
 -   Aceleradores de Hardware
 

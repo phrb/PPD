@@ -1,0 +1,15 @@
+#+STARTUP: overview indent inlineimages
+#+OPTIONS: toc:nil
+
+* Redirecionamento de Streams Padrão em Sistemas POSIX
+[[http://creativecommons.org/licenses/by/4.0/][https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg]]
+
+** Conteúdo
+*** [[https://github.com/phrb/PPD/raw/main/lectures/tex/cuda/src/intro-cuda-pt.pdf][slides]]
+*** Exemplos de Código
+- [[https://github.com/phrb/PPD/tree/main/lectures/tex/cuda/code_samples/vecAdd][Adição de vetores]]
+- [[https://github.com/NVIDIA/cuda-samples][Exemplos em CUDA da NVIDIA]]
+- [[https://www.olcf.ornl.gov/tutorials/cuda-vector-addition/][OKNL Vector Addition]]
+*** Documentação
+- [[https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html][CUDA Programming Guide]]
+- [[https://docs.nvidia.com/cuda/index.html][CUDA Documentation]]
