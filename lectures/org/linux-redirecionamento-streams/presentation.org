@@ -198,7 +198,10 @@ See [[Emacs Setup]] below for local buffer variables
 :BEAMER_env: block
 :END:
 
--
+- Copiar a saída do terminal para um arquivo
+- Abrir um arquivo a partir do programa
+  - Qual o nome do arquivo? E o formato?
+- Printf -> C-c C-v -> colar
 
 *** Monitoramento de Recursos                               :B_block:BMCOL:
 :PROPERTIES:
@@ -206,7 +209,11 @@ See [[Emacs Setup]] below for local buffer variables
 :BEAMER_env: block
 :END:
 
--
+- Abrir o top e acompanhar os processos
+- Usar o htop
+- Monitorar alguns do /proc/
+  - meminfo
+  - cpuinfo
 
 * Redirecionamento de Entrada/Saída em /bash/
 ** Streams Padrão em Processos POSIX
@@ -501,7 +508,10 @@ cat out.log | sed "s/\t/    /g"
 :BEAMER_env: block
 :END:
 
--
+- Escrever em um arquivo com um programa, e ler com o outro programa
+- Pipe: pega a saída do primeiro e joga no segundo
+  - Redireciona o  stream de  saída do primeiro  para a o  stream de  entrada do
+    segundo
 
 *** Conectando Streams em /C/                               :B_block:BMCOL:
 :PROPERTIES:
@@ -509,7 +519,8 @@ cat out.log | sed "s/\t/    /g"
 :BEAMER_env: block
 :END:
 
--
+- Pipe no bash: |
+- Pipe em C?
 
 * Duplicando Descritores de Arquivo com Chamadas de Sistema
 ** Descritores de Arquivo em Processos POSIX
