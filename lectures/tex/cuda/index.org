@@ -6,10 +6,21 @@
 
 ** Conteúdo
 *** [[https://github.com/phrb/PPD/raw/main/lectures/tex/cuda/src/intro-cuda-pt.pdf][Slides]]
+
 *** Exemplos de Código
-- [[https://github.com/phrb/PPD/tree/main/lectures/tex/cuda/code_samples/vecAdd][Adição de vetores]]
+
+**** Adição de Vetores
+- [[https://github.com/phrb/PPD/tree/main/lectures/tex/cuda/code_samples/vecAdd_c/complete_code][Esquentando os motores: versão em C]]
+- [[https://github.com/phrb/PPD/tree/main/lectures/tex/cuda/code_samples/vecAdd][Versão em CUDA]]
+
+**** Multiplicação de Matrizes
+- [[https://github.com/phrb/PPD/tree/main/lectures/tex/cuda/code_samples/matMul_c/complete_code][Esquentando os motores: versão em C]]
+- [[https://github.com/phrb/PPD/tree/main/lectures/tex/cuda/code_samples/matMul][Versão em CUDA]]
+
+**** Outros Exemplos
 - [[https://github.com/NVIDIA/cuda-samples][Exemplos em CUDA da NVIDIA]]
 - [[https://www.olcf.ornl.gov/tutorials/cuda-vector-addition/][OKNL Vector Addition]]
+
 *** Documentação
 - [[https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html][CUDA Programming Guide]]
 - [[https://docs.nvidia.com/cuda/index.html][CUDA Documentation]]
