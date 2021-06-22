@@ -1,3 +1,5 @@
 /lectures/org/linux-redirecionamento-streams/_minted-presentation/
 *.pygtex
 *.pygstyle
+/lectures/tex/cuda/code_samples/matMul/matMul
+/lectures/tex/cuda/code_samples/vecAdd/vecAdd
